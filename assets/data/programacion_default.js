@@ -65,9 +65,9 @@
                     id: "6",
                     nombre: "CICLO 6",
                     cursos: [
-                        { asignatura: "201230601 - DISEÑO DE SISTEMAS DE INFORMACIÓN", creditos: 4.0, seccion: "1", docente: "0A1613 - SOTO SOTO, LUIS", tope: 30, matriculados: 30, aula: "--", horarios: "MARTES 14:00 - 16:00\nMARTES 16:00 - 19:00" },
+                        { asignatura: "201230601 - DISEÑO DE SISTEMAS DE INFORMACIÓN", creditos: 4.0, seccion: "1", docente: "0A1613 - SOTO SOTO, LUIS", tope: 30, matriculados: 10, aula: "--", horarios: "MARTES 14:00 - 16:00\nMARTES 16:00 - 19:00" },
                         { asignatura: "201230602 - ADMINISTRACIÓN DE BASE DE DATOS", creditos: 4.0, seccion: "1", docente: "0A1232 - CORAL YGNACIO, MARCO ANTONIO", tope: 45, matriculados: 10, aula: "--", horarios: "MARTES 14:00 - 16:00\nMARTES 16:00 - 19:00" },
-                        { asignatura: "201230603 - REDES Y COMUNICACIONES", creditos: 4.0, seccion: "1", docente: "030228 - GONZÁLES SUÁREZ, JUAN CARLOS", tope: 40, matriculados: 40, aula: "--", horarios: "VIERNES 14:00 - 17:00\nVIERNES 17:00 - 20:00" },
+                        { asignatura: "201230603 - REDES Y COMUNICACIONES", creditos: 4.0, seccion: "1", docente: "030228 - GONZÁLES SUÁREZ, JUAN CARLOS", tope: 40, matriculados: 37, aula: "--", horarios: "VIERNES 14:00 - 17:00\nVIERNES 17:00 - 20:00" },
                         { asignatura: "201230604 - DISEÑO DE INTERFASES DE USUARIO", creditos: 3.0, seccion: "1", docente: "094315 - ESPINOZA DOMINGUEZ, ROBERT ELIAS", tope: 45, matriculados: 12, aula: "--", horarios: "MIERCOLES 14:00 - 16:00\nMIERCOLES 16:00 - 18:00" },
                         { asignatura: "201230605 - MODELOS Y SIMULACIÓN", creditos: 3.0, seccion: "1", docente: "059013 - RIVAS PEÑA, MARCOS HERNAN", tope: 35, matriculados: 2, aula: "--", horarios: "JUEVES 08:00 - 10:00\nJUEVES 10:00 - 12:00" },
                         { asignatura: "201230606 - FINANZAS PARA LA GESTIÓN", creditos: 3.0, seccion: "1", docente: "036587 - LAMA MORE, MANUEL ANTONIO", tope: 38, matriculados: 31, aula: "--", horarios: "LUNES 14:00 - 16:00\nLUNES 16:00 - 18:00" }
