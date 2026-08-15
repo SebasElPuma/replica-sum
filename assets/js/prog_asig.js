@@ -71,6 +71,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 let isEditMode = false;
 let globalData = null;
+let sortableInstance = null;
 
 function initPage(data) {
     globalData = data;
@@ -101,6 +102,8 @@ function renderTable() {
     plan.ciclos.forEach((ciclo) => {
         // Cabecera del Ciclo
         const rowHeader = document.createElement('tr');
+        rowHeader.className = 'ciclo-header no-drag';
+        rowHeader.dataset.cicloId = ciclo.id;
         if (isEditMode) {
             rowHeader.innerHTML = `
                 <td class="text-center" colspan="7" style="background: rgba(101, 88, 211, 0.15); color: rgb(101, 88, 211); font-weight: bolder; text-align: center; padding: 8px;">
@@ -120,6 +123,10 @@ function renderTable() {
         ciclo.cursos.forEach((curso, cIndex) => {
             totalCursos++;
             const row = document.createElement('tr');
+            row.className = 'curso-row';
+            row.dataset.cicloId = ciclo.id;
+            row.dataset.cindex = cIndex;
+            if (isEditMode) row.style.cursor = 'grab';
             
             let html = '';
             if (isEditMode) {
@@ -158,6 +165,8 @@ function renderTable() {
 
         if (isEditMode) {
             const addRow = document.createElement('tr');
+            addRow.className = 'add-curso-row no-drag';
+            addRow.dataset.cicloId = ciclo.id;
             addRow.innerHTML = `<td class="text-center" colspan="7"><button class="btn btn-success btn-sm btn-add-curso" data-ciclo="${ciclo.id}"><i class="fa-solid fa-plus"></i> Añadir Curso al ${ciclo.nombre}</button></td>`;
             tbody.appendChild(addRow);
         }
@@ -165,6 +174,7 @@ function renderTable() {
 
     if (isEditMode) {
         const addCicloRow = document.createElement('tr');
+        addCicloRow.className = 'add-ciclo-row no-drag';
         addCicloRow.innerHTML = `<td class="text-center" colspan="7"><button class="btn btn-success btn-sm btn-add-ciclo" style="width: 100%;"><i class="fa-solid fa-folder-plus"></i> Añadir Nuevo Ciclo</button></td>`;
         tbody.appendChild(addCicloRow);
 
@@ -203,7 +213,69 @@ function renderTable() {
 
     if (isEditMode) {
         attachEditListeners();
+        
+        if (!sortableInstance) {
+            if (typeof Sortable !== 'undefined') {
+                sortableInstance = Sortable.create(tbody, {
+                    animation: 150,
+                    draggable: '.curso-row',
+                    filter: '.no-drag',
+                    handle: '.curso-row',
+                    onEnd: function (evt) {
+                        actualizarOrdenCursosDesdeDOM();
+                    }
+                });
+            } else {
+                console.warn('SortableJS no está cargado');
+            }
+        }
+    } else {
+        if (sortableInstance) {
+            sortableInstance.destroy();
+            sortableInstance = null;
+        }
     }
+}
+
+function actualizarOrdenCursosDesdeDOM() {
+    const plan = globalData.planes[0];
+    const tbody = document.querySelector('#tablaProg tbody');
+    const rows = tbody.children;
+    
+    const oldCiclosMap = {};
+    plan.ciclos.forEach(c => {
+        oldCiclosMap[c.id] = c;
+        c._oldCursos = [...c.cursos];
+        c.cursos = [];
+    });
+    
+    let currentCicloId = null;
+    
+    for (let i = 0; i < rows.length; i++) {
+        const row = rows[i];
+        
+        if (row.classList.contains('ciclo-header')) {
+            currentCicloId = row.dataset.cicloId;
+        } else if (row.classList.contains('curso-row')) {
+            if (!currentCicloId && plan.ciclos.length > 0) {
+                currentCicloId = plan.ciclos[0].id;
+            }
+            
+            const oldCicloId = row.dataset.cicloId;
+            const oldCIndex = parseInt(row.dataset.cindex);
+            
+            const oldCiclo = oldCiclosMap[oldCicloId];
+            if (oldCiclo && oldCiclo._oldCursos[oldCIndex]) {
+                const cursoObj = oldCiclo._oldCursos[oldCIndex];
+                if (currentCicloId && oldCiclosMap[currentCicloId]) {
+                    oldCiclosMap[currentCicloId].cursos.push(cursoObj);
+                }
+            }
+        }
+    }
+    
+    plan.ciclos.forEach(c => delete c._oldCursos);
+    renderTable();
 }
 
 function toggleEditMode() {
