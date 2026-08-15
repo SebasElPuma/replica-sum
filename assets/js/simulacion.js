@@ -149,7 +149,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <td class="align-middle">${sec.aula}</td>
                     <td class="align-middle text-left" style="font-size: 12px;">${sec.docente}</td>
                     <td class="align-middle">${sec.matriculados} / ${sec.tope}</td>
-                    <td class="align-middle" style="font-size: 12px;">2100 - FACULTAD DE CIENCIAS ECONÓMICAS</td>
+                    <td class="align-middle" style="font-size: 12px;">20 - FISI</td>
                     <td class="align-middle">${selectedHtml}</td>
                 `;
                 tbodySecciones.appendChild(tr);
