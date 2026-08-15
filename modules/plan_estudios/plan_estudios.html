@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>SUM - Plan de Estudios</title>
+    
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/menu-full-page.css">
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/theme-white.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil.css">
+    <link rel="stylesheet" href="../../assets/css/main-pro.css">
+    <link rel="icon" href="../../assets/images/logo_sum_login.png" type="image/x-icon">
+    
+    <style>
+        .layout { z-index: initial !important; }
+        
+        /* Student Data Card Styles (Copiado de reportes) */
+        .student-data-card {
+            border: 1px solid #e0e0e0;
+            border-radius: 8px;
+            position: relative;
+            margin-top: 25px;
+            padding: 30px 20px 20px 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .student-data-badge {
+            position: absolute;
+            top: -14px;
+            left: 20px;
+            background-color: #fce3c7;
+            color: #5a5a5a;
+            padding: 4px 18px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+        .data-box {
+            background-color: #e9e9f6;
+            padding: 12px 15px;
+            border-radius: 6px;
+            height: 100%;
+        }
+        .data-title {
+            display: block;
+            font-size: 12px;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 2px;
+        }
+        .data-value {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #6558d3;
+        }
+        
+        /* Estilos de la tabla de Plan de Estudios */
+        #tablaPlanEstudios th {
+            color: #495057;
+            font-weight: 700;
+            background-color: #f8f9fa;
+            border-top: 1px solid #e0e0e0;
+            border-bottom: 2px solid #e0e0e0;
+            vertical-align: middle;
+            padding: 12px;
+            text-align: center;
+        }
+        #tablaPlanEstudios td {
+            vertical-align: middle;
+            border: 1px solid #e0e0e0;
+            padding: 10px;
+        }
+        #tablaPlanEstudios tbody tr:hover {
+            background-color: transparent !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout has-sidebar fixed-sidebar fixed-header">
+        <div class="loader loader--active">
+            <div class="loader__icon"><svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
+                    <animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>
+                </svg></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+        </div>
+        <div id="overlay" class="overlay"></div>
+        <div class="layout">
+            <main class="content">
+
+                <article class="ar-title">
+                    <h2><b>Plan de Estudios</b></h2>
+                </article>
+
+                <div class="row">
+                    <div class="col-xl-12">
+                        <!-- Selector de Planes -->
+                        <div class="mb-4 d-flex align-items-center">
+                            <label for="carreraSelect" class="font-weight-bold mr-3" style="font-size: 1.1rem; color: #495057;">Seleccionar Carrera:</label>
+                            <select id="carreraSelect" class="form-control" style="width: 300px; border-radius: 8px;">
+                                <option value="sistemas">Ingeniería de Sistemas</option>
+                                <option value="software">Ingeniería de Software</option>
+                                <option value="computacion">Ciencias de la Computación</option>
+                            </select>
+                        </div>
+
+                        <!-- Datos del Estudiante -->
+                        <div class="card mb-4 student-data-card">
+                            <div class="student-data-badge">Datos del Estudiante</div>
+                            <div class="card-body p-0">
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <div class="data-box">
+                                            <span class="data-title">Periodo Académico</span>
+                                            <span class="data-value" id="lbl-periodo">2026-I</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="data-box">
+                                            <span class="data-title">Sede</span>
+                                            <span class="data-value" id="lbl-sede">LIMA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="data-box">
+                                            <span class="data-title">Facultad</span>
+                                            <span class="data-value" id="lbl-facultad">INGENIERIA DE SISTEMAS E INFORMATICA</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="data-box">
+                                            <span class="data-title">Programa</span>
+                                            <span class="data-value" id="lbl-escuela">INGENIERIA DE SISTEMAS</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 mb-3 mb-md-0">
+                                        <div class="data-box">
+                                            <span class="data-title">Especialidad</span>
+                                            <span class="data-value" id="lbl-especialidad">-</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="data-box">
+                                            <span class="data-title">Plan de Estudios</span>
+                                            <span class="data-value" id="lbl-plan">2018</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Tabla de Plan de Estudios -->
+                        <div class="card" style="border: 1px solid #e0e0e0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.05); padding: 20px;">
+                            <div class="card-body p-0">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered text-center mb-0" id="tablaPlanEstudios" style="border-collapse: collapse;">
+                                        <thead>
+                                            <tr>
+                                                <th style="width: 40%;">Asignatura</th>
+                                                <th style="width: 10%;">Créditos</th>
+                                                <th style="width: 10%;">Tipo</th>
+                                                <th style="width: 40%;">Pre-Requisito</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="tbodyPlanEstudios" style="font-size: 13px; font-weight: normal; color: #495057;">
+                                            <!-- Se llena dinámicamente con JS -->
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </main>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="../../assets/data/resumen_default.js"></script>
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/header.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 1. Cargar Datos del Estudiante
+            let resumenData = window.RESUMEN_DEFAULT_DATA;
+            try {
+                const localRes = localStorage.getItem('sum_resumen_data');
+                if (localRes) {
+                    resumenData = JSON.parse(localRes);
+                }
+            } catch (e) {
+                console.error("Error reading resumen from localStorage", e);
+            }
+            
+            if (resumenData) {
+                document.getElementById('lbl-periodo').textContent = resumenData.periodoAcademico || '-';
+                document.getElementById('lbl-sede').textContent = resumenData.sede || '-';
+                document.getElementById('lbl-facultad').textContent = resumenData.facultad || '-';
+                document.getElementById('lbl-escuela').textContent = resumenData.escuela || '-';
+                document.getElementById('lbl-especialidad').textContent = resumenData.especialidad || '-';
+                document.getElementById('lbl-plan').textContent = resumenData.plan || '-';
+            }
+
+            // 2. Cargar Plan de Estudios y agrupar por Ciclo
+            const tbody = document.getElementById('tbodyPlanEstudios');
+            tbody.innerHTML = '<tr><td colspan="4">Cargando plan de estudios...</td></tr>';
+            
+            // Función para renderizar
+            function renderPlan(agrupado) {
+                tbody.innerHTML = '';
+                
+                // Renderizar ordenado
+                const ciclos = Object.keys(agrupado).sort((a,b) => parseInt(a) - parseInt(b));
+                
+                ciclos.forEach(ciclo => {
+                    // Fila de Cabecera del Ciclo
+                    const trHeader = document.createElement('tr');
+                    trHeader.innerHTML = `<td colspan="4" class="text-center" style="background-color: #ede7f6; color: #6558d3; font-weight: 700; padding: 10px;">CICLO ${ciclo}</td>`;
+                    tbody.appendChild(trHeader);
+                                  // Cursos del ciclo
+                    agrupado[ciclo].forEach((curso) => {
+                        let tipoLabel = curso.Tipo || '-';
+                        let credsRaw = curso.Créditos || curso.Creditos;
+                        let creditos = credsRaw ? parseInt(credsRaw) : '-';
+                        
+                        let preReqData = curso["Pre-Requisito"] || '';
+                        let preReqs = Array.isArray(preReqData) ? preReqData : [preReqData];
+                        let rowspan = preReqs.length;
+                        
+                        preReqs.forEach((preReq, idx) => {
+                            const tr = document.createElement('tr');
+                            let hasPre = preReq && preReq !== '-' && preReq.trim() !== '';
+                            let preStyle = hasPre ? 'background-color: #e8f5e9; color: #2e7d32;' : '';
+                            
+                            if (idx === 0) {
+                                tr.innerHTML = `
+                                    <td class="text-left align-middle" style="padding-left: 20px; color: #495057;" rowspan="${rowspan}">${curso.Asignatura}</td>
+                                    <td class="align-middle" style="color: #495057; font-weight: normal;" rowspan="${rowspan}">${creditos}</td>
+                                    <td class="align-middle" rowspan="${rowspan}">${tipoLabel}</td>
+                                    <td class="text-left align-middle" style="padding-left: 20px; ${preStyle}">${preReq}</td>
+                                `;
+                            } else {
+                                tr.innerHTML = `
+                                    <td class="text-left align-middle" style="padding-left: 20px; ${preStyle}">${preReq}</td>
+                                `;
+                            }
+                            tbody.appendChild(tr);
+                        });
+                    });
+                });
+            }
+
+            // 3. Manejar cambio de selector (Usando inyección de JS para evitar CORS)
+            document.getElementById('carreraSelect').addEventListener('change', function(e) {
+                const carrera = e.target.value;
+                let src = '';
+                let dataVar = '';
+                
+                if (carrera === 'sistemas') {
+                    src = 'plan_sistemas.js';
+                    dataVar = 'PLAN_SISTEMAS_DATA';
+                } else if (carrera === 'software') {
+                    src = 'plan_soft.js';
+                    dataVar = 'PLAN_SOFT_DATA';
+                } else if (carrera === 'computacion') {
+                    src = 'plan_cc.js';
+                    dataVar = 'PLAN_CC_DATA';
+                }
+                
+                if(src) {
+                    // Cargar archivo js que contiene window[dataVar]
+                    const script = document.createElement('script');
+                    script.src = src;
+                    script.onload = function() {
+                        if (window[dataVar]) {
+                            renderPlan(window[dataVar]);
+                        } else {
+                            tbody.innerHTML = '<tr><td colspan="4" class="text-danger">No se encontró la data del plan.</td></tr>';
+                        }
+                    };
+                    script.onerror = function() {
+                        tbody.innerHTML = '<tr><td colspan="4" class="text-danger">Error al cargar el plan de estudios.</td></tr>';
+                    }
+                    document.body.appendChild(script);
+                } else {
+                    tbody.innerHTML = '<tr><td colspan="4">Plan no disponible para esta carrera por ahora.</td></tr>';
+                }
+            });
+
+            // Cargar inicial simulando que se seleccionó sistemas
+            document.getElementById('carreraSelect').value = 'sistemas';
+            document.getElementById('carreraSelect').dispatchEvent(new Event('change'));
+        });
+    </script>
+</body>
+</html>

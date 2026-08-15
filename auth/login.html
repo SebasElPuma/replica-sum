@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Sistema Único de Matrícula - Login Offline</title>
+		
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="icon" href="../assets/images/logo_sum_login.png" type="image/png">
+		<link rel="stylesheet" href="../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../assets/css/login.css">
+			
+	</head>
+	<body>
+
+		<form id="formLogin" onsubmit="event.preventDefault(); window.location.href='../modules/dashboard/index.html';" autocomplete="off">
+			<div class="screen-1">
+				<h2 class="text-center font-weight-bolder" style="color: #F7DC6F;">Intranet Alumno</h2>
+				<div class="image">
+					<img src="../assets/images/logo_sum_login.png" class="img-responsive">
+				</div>
+			    <div class="email">
+			    	<label for="email">Usuario</label>
+			        <div class="sec-2">
+						<input id="email" type="text" class="numbersAndLettersOnlyAndDot" name="login" placeholder="Ingrese usuario" autofocus="autofocus" autocomplete="off">
+			        </div>
+			    </div>
+			    <div class="password">
+			    	<label for="password">Contraseña</label>
+			        <div class="sec-2">
+			            <input id="password" class="pas" type="password" name="clave" placeholder="············" autocomplete="off">
+			        </div>
+			    </div>
+				
+			    <button type="submit" class="login">Iniciar Sesión</button>
+			</div>
+		</form>
+
+	
+</body></html>

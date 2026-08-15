@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="_csrf" content="38236a69-b292-4d9b-b712-790f30250e0f">
+		<meta name="root" content="/alumnoWebSum/">
+		<meta name="x-custom-header" content="AlumnoWebSum2026Q1">
+		
+		<title>SUM - Historial Académico</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/menu-full-page.css">
+		
+		<link rel="stylesheet" href="../../assets/css/all.min.css">
+		
+		<link rel="stylesheet" href="../../assets/css/theme-white.css">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil.css">
+
+<link rel="stylesheet" href="../../assets/css/main-pro.css">
+        
+		<link rel="icon" href="../../assets/images/logo_sum_login.png" type="image/x-icon">
+		
+	<link href="../../assets/css/inicio.css" rel="stylesheet">
+	<style>
+		.layout {
+			z-index: initial !important; /* Restablece el z-index a su valor inicial */
+		}
+		#btn-modificar.btn-primary { background-color: #6558d3 !important; border-color: #6558d3 !important; }
+		#btn-modificar.btn-primary:hover { background-color: #5548c3 !important; border-color: #5548c3 !important; }
+		#btn-modificar.btn-success { background-color: #28a745 !important; border-color: #28a745 !important; }
+		#btn-modificar.btn-success:hover { background-color: #218838 !important; border-color: #1e7e34 !important; }
+				#tablaHistorial th, #tablaHistorial td {
+			white-space: normal !important;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+            vertical-align: middle;
+		}
+		/* Ciclo, Plan, Tipo, Creditos, Seccion */
+		#tablaHistorial th:nth-child(1), #tablaHistorial td:nth-child(1),
+		#tablaHistorial th:nth-child(2), #tablaHistorial td:nth-child(2),
+		#tablaHistorial th:nth-child(3), #tablaHistorial td:nth-child(3),
+		#tablaHistorial th:nth-child(6), #tablaHistorial td:nth-child(6),
+		#tablaHistorial th:nth-child(7), #tablaHistorial td:nth-child(7) {
+			width: 75px;
+			min-width: 75px;
+			max-width: 75px;
+		}
+		/* Calificacion */
+		#tablaHistorial th:nth-child(5), #tablaHistorial td:nth-child(5) {
+			width: 95px;
+			min-width: 95px;
+			max-width: 95px;
+		}
+		/* Asignatura */
+		#tablaHistorial th:nth-child(4), #tablaHistorial td:nth-child(4) {
+			width: auto;
+			min-width: 170px;
+		}
+		/* Acta */
+		#tablaHistorial th:nth-child(8), #tablaHistorial td:nth-child(8) {
+			width: 330px;
+			min-width: 330px;
+			max-width: 330px;
+		}
+	</style>
+
+</head>
+	<body>
+		<div class="layout has-sidebar fixed-sidebar fixed-header">
+			<div class="loader loader--active">
+				<div class="loader__icon"><svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+						<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+						<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
+						<animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>
+					</svg></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+			</div>
+			
+			
+			
+
+<div id="overlay" class="overlay"></div>
+			<div class="layout">
+		<main class="content">
+
+		<article class="ar-title">
+			<h2><b>Historial Académico</b></h2>
+		</article>
+		<div class="row">
+			<div class="col-xl-4">
+				<div class="card">
+					<div class="card-body">
+						<h6 class="card-title">RESUMEN DEL HISTORIAL ACADÉMICO</h6>
+						<div class="row-span2">
+							<span>Creditaje Requerido para Egresar</span>
+							<span id="spCredTotal" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<span>Creditaje Aprobado</span>
+							<span id="spCredAprob" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Obligatorios</small>
+							<span id="spCredObli" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- De Especialidad</small>
+							<span id="spCredEsp" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Electivos Generales</small>
+							<span id="spCredEle" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Electivos de Especialidad</small>
+							<span id="spCredEleEsp" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Optativos</small>
+							<span id="spCredOpt" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Alternativos</small>
+							<span id="spCredAlt" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- De Otra Especialidad</small>
+							<span id="spCredOtraEsp" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Más de una vez</small>
+							<span id="spCredDup" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<small>- Otros</small>
+							<span id="spCredOtros" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<span>Creditaje Faltante</span>
+							<span id="spCredFaltante" class="label-success">0</span>
+						</div>
+						<div class="row-span2">
+							<span><h6>Promedio Ponderado</h6></span>
+							<h6><span id="spPromedio" class="label-success">0</span></h6>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-xl-8">
+				<div class="card">
+					<div class="card-body">
+						<div id="chart" style="min-height: 415px;"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<div  >
+                        <div class="mb-3 d-flex gap-2">
+                            <button id="btn-descargar" class="btn btn-danger" style="margin-right: 5px; color: white; font-weight: normal; border-radius: 5px;">
+                                <i class="fa-regular fa-file-pdf"></i> Descargar
+                            </button>
+                            <button id="btn-importar" class="btn btn-secondary" style="margin-right: 5px; color: white; font-weight: normal; border-radius: 5px;">
+                                <i class="fa-solid fa-file-import"></i> Importar
+                            </button>
+                            <input type="file" id="file-importar" accept="application/pdf" style="display: none;">
+                            <button id="btn-modificar" class="btn btn-primary" style="color: white; font-weight: normal; width: 110px; border-radius: 5px;">
+                                <i class="fa-solid fa-pen-to-square"></i> Modificar
+                            </button>
+                            <button id="btn-reestablecer" class="btn btn-warning" style="margin-left: auto; color: white; font-weight: normal; border-radius: 5px;">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+<table id="tablaHistorial" class="table table-bordered table-sm no-footer "   ><thead><tr role="row"><th class=" text-center" rowspan="1" colspan="1" >Ciclo</th><th class=" text-center" rowspan="1" colspan="1" >Plan</th><th class=" text-center" rowspan="1" colspan="1" >Tipo</th><th class=" text-center text-left" rowspan="1" colspan="1" >Asignatura</th><th class=" text-center" rowspan="1" colspan="1" >Calificación</th><th class=" text-center" rowspan="1" colspan="1" >Créditos</th><th class=" text-center" rowspan="1" colspan="1" >Sección</th><th class=" text-center" rowspan="1" colspan="1" >Acta</th></tr></thead><tbody></tbody></table></div><div class="s_info" id="tablaHistorial_info" role="status" aria-live="polite">Mostrando 0 registros</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+		</main>
+	
+
+			</div>
+		</div>
+
+        <script src="../../assets/js/sidebar.js"></script>
+        <script src="../../assets/js/header.js"></script>
+        <script src="../../assets/data/perfil_default.js"></script>
+        <script src="../../assets/data/resumen_default.js"></script>
+        <script src="../../assets/js/dashboard.js"></script>
+        <script src="../../assets/data/historial_default.js"></script>
+        <script src="../../assets/js/lib/pdf.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.umd.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.plugin.autotable.min.js"></script>
+        <script src="../../assets/js/lib/apexcharts.min.js"></script>
+        <script src="../../assets/data/logos_base64.js"></script>
+        <script src="../../assets/js/historial.js"></script>
+    </body>
+</html>

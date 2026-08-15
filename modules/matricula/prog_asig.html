@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="_csrf" content="38236a69-b292-4d9b-b712-790f30250e0f">
+		<meta name="root" content="/alumnoWebSum/">
+		<meta name="x-custom-header" content="AlumnoWebSum2026Q1">
+		
+		<title>SUM - Programación de Asignaturas</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/menu-full-page.css">
+		
+		<link rel="stylesheet" href="../../assets/css/all.min.css">
+		
+		<link rel="stylesheet" href="../../assets/css/theme-white.css">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil.css">
+
+<link rel="stylesheet" href="../../assets/css/main-pro.css">
+        
+		<link rel="icon" href="../../assets/images/logo_sum_login.png" type="image/x-icon">
+		
+	<link href="../../assets/css/inicio.css" rel="stylesheet">
+	<style>
+		.layout {
+			z-index: initial !important;
+		}
+		#btn-modificar.btn-primary { background-color: #6558d3 !important; border-color: #6558d3 !important; }
+		#btn-modificar.btn-primary:hover { background-color: #5548c3 !important; border-color: #5548c3 !important; }
+		#btn-modificar.btn-success { background-color: #28a745 !important; border-color: #28a745 !important; }
+		#btn-modificar.btn-success:hover { background-color: #218838 !important; border-color: #1e7e34 !important; }
+		#tablaProg th, #tablaProg td {
+			white-space: normal !important;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+            vertical-align: middle;
+		}
+		
+		/* Student Data Card Styles */
+		.student-data-card {
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			position: relative;
+			margin-top: 25px;
+			padding: 30px 20px 20px 20px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+		}
+		.student-data-badge {
+			position: absolute;
+			top: -14px;
+			left: 20px;
+			background-color: #fce3c7;
+			color: #5a5a5a;
+			padding: 4px 18px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		.data-box {
+			background-color: #e9e9f6;
+			padding: 12px 15px;
+			border-radius: 6px;
+			height: 100%;
+		}
+		.data-title {
+			display: block;
+			font-size: 12px;
+			font-weight: 700;
+			color: #333;
+			margin-bottom: 2px;
+		}
+		.data-value {
+			display: block;
+			font-size: 13px;
+			font-weight: 700;
+			color: #6558d3;
+		}
+	</style>
+
+</head>
+	<body>
+		<div class="layout has-sidebar fixed-sidebar fixed-header">
+			<div class="loader loader--active">
+				<div class="loader__icon"><svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+						<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+						<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
+						<animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>					</svg></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+			</div>
+			
+<div id="overlay" class="overlay"></div>
+			<div class="layout">
+		<main class="content">
+
+		<article class="ar-title">
+			<h2><b>Programación de Asignaturas</b></h2>
+		</article>
+
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card mb-4 student-data-card">
+					<div class="student-data-badge">Datos del Estudiante</div>
+					<div class="card-body p-0">
+						<div class="row">
+							<div class="col-md-6 mb-3">
+								<div class="data-box">
+									<span class="data-title">Periodo Académico</span>
+									<span class="data-value" id="lbl-periodo"></span>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="data-box">
+									<span class="data-title">Sede</span>
+									<span class="data-value" id="lbl-sede"></span>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="data-box">
+									<span class="data-title">Facultad</span>
+									<span class="data-value" id="lbl-facultad"></span>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3">
+								<div class="data-box">
+									<span class="data-title">Programa</span>
+									<span class="data-value" id="lbl-escuela"></span>
+								</div>
+							</div>
+							<div class="col-md-6 mb-3 mb-md-0">
+								<div class="data-box">
+									<span class="data-title">Especialidad</span>
+									<span class="data-value" id="lbl-especialidad"></span>
+								</div>
+							</div>
+							<div class="col-md-6">
+								<div class="data-box">
+									<span class="data-title">Plan de Estudios</span>
+									<span class="data-value" id="lbl-plan"></span>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="row">
+			<div class="col-xl-12">
+				<div class="card">
+					<div class="card-body">
+						<div>
+                        <div class="mb-3 d-flex gap-2">
+                            <button id="btn-descargar" class="btn btn-danger" style="margin-right: 10px; color: white; font-weight: normal; border-radius: 5px;">
+                                <i class="fa-regular fa-file-pdf"></i> Descargar
+                            </button>
+                            <button id="btn-modificar" class="btn btn-primary" style="margin-right: 10px; color: white; font-weight: normal; width: 110px; border-radius: 5px;">
+                                <i class="fa-solid fa-pen-to-square"></i> Modificar
+                            </button>
+                            <button id="btn-reestablecer" class="btn btn-warning" style="margin-left: auto; color: white; border-radius: 5px;" title="Restablecer Datos">
+                                <i class="fa-solid fa-rotate-left"></i>
+                            </button>
+                        </div>
+                        <div class="table-responsive">
+<table id="tablaProg" class="table table-bordered table-sm no-footer">
+    <thead>
+        <tr role="row">
+            <th class="text-center text-left">Asignatura</th>
+			<th class="text-center" style="width: 80px;">Créditos</th>
+            <th class="text-center" style="width: 80px;">Sección</th>
+            <th class="text-center text-left">Docente</th>
+            <th class="text-center" style="width: 100px;">Tope</th>
+            <th class="text-center" style="width: 100px;">Matriculados</th>
+            <th class="text-center" id="th-horarios" style="width: 180px;">Horarios</th>
+        </tr>
+    </thead>
+    <tbody></tbody>
+</table>
+</div><div class="s_info" id="tablaProg_info" role="status" aria-live="polite">Mostrando 0 registros</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	
+
+		</main>
+	
+
+			</div>
+		</div>
+
+        <script src="../../assets/js/sidebar.js"></script>
+        <script src="../../assets/js/header.js"></script>
+        <script src="../../assets/data/perfil_default.js"></script>
+        <script src="../../assets/data/resumen_default.js"></script>
+        <script src="../../assets/js/dashboard.js"></script>
+        <script src="../../assets/data/programacion_default.js"></script>
+        <script src="../../assets/js/lib/pdf.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.umd.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.plugin.autotable.min.js"></script>
+        <script src="../../assets/data/logos_base64.js"></script>
+        <script src="../../assets/js/prog_asig.js"></script>
+    </body>
+</html>
+

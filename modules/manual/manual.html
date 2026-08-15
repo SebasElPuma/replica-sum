@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>SUM - Manuales y Tutoriales</title>
+    <link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../assets/css/menu-full-page.css">
+    
+    <link rel="stylesheet" href="../../assets/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/css/theme-white.css">
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil.css">
+    <link rel="stylesheet" href="../../assets/css/main-pro.css">
+    
+    <link rel="icon" href="../../assets/images/logo_sum_login.png" type="image/x-icon">
+    <link href="../../assets/css/inicio.css" rel="stylesheet">
+    
+    <style>
+        .layout { z-index: initial !important; }
+        .manual-container {
+            padding: 30px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            margin-bottom: 30px;
+        }
+        .manual-card {
+            border: 1px solid #edf2f9;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            transition: all 0.3s ease;
+            height: 100%;
+            cursor: pointer;
+            display: flex;
+            flex-direction: column;
+            padding: 20px;
+            text-decoration: none !important;
+            background-color: #fff;
+        }
+        .manual-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            border-color: #d1d9e6;
+        }
+        .manual-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            background: #f4f6f9;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: #495057;
+            margin-bottom: 15px;
+            transition: all 0.3s ease;
+        }
+        .manual-card:hover .manual-icon {
+            background: #e9ecef;
+            color: #212529;
+        }
+        .manual-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: #2b3445;
+            margin-bottom: 8px;
+        }
+        .manual-desc {
+            color: #6c757d;
+            font-size: 0.9rem;
+            line-height: 1.5;
+            flex-grow: 1;
+        }
+        .manual-action {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #0d4a7a;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .manual-card:hover .manual-action {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="layout has-sidebar fixed-sidebar fixed-header">
+        <div class="loader loader--active">
+            <div class="loader__icon"><svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+                    <path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+                    <path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
+                    <animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>
+                </svg></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+            <div class="loader__tile"></div>
+        </div>
+        <div id="overlay" class="overlay"></div>
+        <div class="layout">
+            <main class="content">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="manual-container">
+                            <h3 class="mb-2 font-weight-bold" style="color: #495057;">
+                                <i class="fa-solid fa-book-open text-secondary mr-2"></i> Manuales y Tutoriales
+                            </h3>
+                            <p class="text-muted mb-4">Seleccione una opción para ver la videoguía correspondiente.</p>
+                            
+                            <div class="row">
+                                <!-- 1 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://www.youtube.com/watch?v=W78jWGC22pw" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-user-circle"></i></div>
+                                        <div class="manual-title">Mi perfil</div>
+                                        <div class="manual-desc">Guía para el usuario para verificar sus datos personales.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 2 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://www.youtube.com/watch?v=edGbLXPGV9o" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                                        <div class="manual-title">Historial Académico</div>
+                                        <div class="manual-desc">Guía para el usuario para visualizar sus calificaciones.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 3 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/DIZgqFH_lsM" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-globe"></i></div>
+                                        <div class="manual-title">Matrícula Vía Internet</div>
+                                        <div class="manual-desc">Guía para el usuario para que realice su matrícula vía internet.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 4 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/jSfB8xI0wVI" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-file-contract"></i></div>
+                                        <div class="manual-title">Reporte de Matrícula</div>
+                                        <div class="manual-desc">Guía para el usuario para visualizar y descargar el Reporte de Matrícula.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 5 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/5eQTw-pY4tE" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-file-invoice"></i></div>
+                                        <div class="manual-title">Reporte de Prematrícula</div>
+                                        <div class="manual-desc">Guía para el usuario para visualizar y descargar el Reporte de Prematrícula.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 6 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/FWcDfVoie2g" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-clipboard-check"></i></div>
+                                        <div class="manual-title">Reporte de Evaluaciones</div>
+                                        <div class="manual-desc">Guía para el usuario para el Ingreso de Evaluaciones.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 7 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/OB-fVPlVLAw" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-calendar-alt"></i></div>
+                                        <div class="manual-title">Programación de Asignaturas</div>
+                                        <div class="manual-desc">Guía para el usuario para visualizar la información de las Asignaturas Programadas.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 8 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/tGvQ5h17f_0" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-user-check"></i></div>
+                                        <div class="manual-title">Mis Asistencias</div>
+                                        <div class="manual-desc">Guía para el usuario para visualizar sus asistencias a los cursos matriculados.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                                <!-- 9 -->
+                                <div class="col-lg-4 col-md-6 mb-4">
+                                    <a href="https://youtu.be/yOkofVDKXr4" target="_blank" class="manual-card">
+                                        <div class="manual-icon"><i class="fa-solid fa-chalkboard-user"></i></div>
+                                        <div class="manual-title">Mis Tutorías</div>
+                                        <div class="manual-desc">Guía para el usuario para la Rectificación de matrícula del estudiante.</div>
+                                        <div class="manual-action"><i class="fa-brands fa-youtube" style="color:#ff0000; font-size:1.2rem;"></i> Ver video</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Data files for header & sidebar context -->
+    <script src="../../assets/data/perfil_default.js"></script>
+    <script src="../../assets/data/resumen_default.js"></script>
+    
+    <!-- Scripts for interactivity -->
+    <script src="../../assets/js/sidebar.js"></script>
+    <script src="../../assets/js/header.js"></script>
+    <script src="../../assets/js/dashboard.js"></script>
+</body>
+</html>

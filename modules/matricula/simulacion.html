@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="_csrf" content="38236a69-b292-4d9b-b712-790f30250e0f">
+		<meta name="root" content="/alumnoWebSum/">
+		<meta name="x-custom-header" content="AlumnoWebSum2026Q1">
+		
+		<title>SUM - Registro de Matrícula</title>
+		<link rel="stylesheet" href="../../assets/css/bootstrap.min.css">
+		<link rel="stylesheet" href="../../assets/css/menu-full-page.css">
+		
+		<link rel="stylesheet" href="../../assets/css/all.min.css">
+		
+		<link rel="stylesheet" href="../../assets/css/theme-white.css">
+
+<link rel="stylesheet" href="../../assets/css/style.css">
+    <link rel="stylesheet" href="../../assets/css/perfil.css">
+
+<link rel="stylesheet" href="../../assets/css/main-pro.css">
+        
+		<link rel="icon" href="../../assets/images/logo_sum_login.png" type="image/x-icon">
+		
+	<link href="../../assets/css/inicio.css" rel="stylesheet">
+	<style>
+		.layout {
+			z-index: initial !important;
+		}
+		#tablaProg th, #tablaProg td {
+			white-space: normal !important;
+			word-wrap: break-word;
+			overflow-wrap: break-word;
+            vertical-align: middle;
+		}
+
+        /* Hover effect buttons */
+        #btn-ejecutar, .btn-elegir, .btn-quitar {
+            transition: background-color 0.2s ease, border-color 0.2s ease !important;
+        }
+        #btn-ejecutar:hover {
+            background-color: #129d6d !important;
+            cursor: pointer;
+        }
+        .btn-elegir:hover {
+            background-color: #e0a800 !important;
+            border-color: #d39e00 !important;
+            cursor: pointer;
+        }
+        .btn-quitar:hover {
+            background-color: #c82333 !important;
+            border-color: #bd2130 !important;
+            cursor: pointer;
+        }
+
+        /* Remove focus outline and shadow from SweetAlert buttons */
+        .swal2-styled:focus {
+            box-shadow: none !important;
+            outline: none !important;
+        }
+
+        /* SweetAlert2 custom fade animation to match Bootstrap's modal feeling */
+        .swal2-popup.swal2-show { animation: swal-fade-in 0.15s linear !important; }
+        .swal2-popup.swal2-hide { animation: swal-fade-out 0.15s linear !important; }
+        .swal2-backdrop-show { animation: swal-fade-in-backdrop 0.15s linear forwards !important; }
+        .swal2-backdrop-hide { animation: swal-fade-out-backdrop 0.15s linear forwards !important; }
+
+        @keyframes swal-fade-in { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes swal-fade-out { from { opacity: 1; transform: translateY(0); } to { opacity: 0; transform: translateY(-20px); } }
+        @keyframes swal-fade-in-backdrop { from { background: rgba(0,0,0,0); } to { background: rgba(0,0,0,0.5); } }
+        @keyframes swal-fade-out-backdrop { from { background: rgba(0,0,0,0.5); } to { background: rgba(0,0,0,0); } }
+
+        /* Icon Animation for Warning */
+        .icon-alerta-animado {
+            animation: icon-zoom-in 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+        @keyframes icon-zoom-in {
+            0% { transform: scale(0); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+		
+		/* Student Data Card Styles */
+		.student-data-card {
+			border: 1px solid #e0e0e0;
+			border-radius: 8px;
+			position: relative;
+			margin-top: 25px;
+			padding: 30px 20px 20px 20px;
+			box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+		}
+		.student-data-badge {
+			position: absolute;
+			top: -14px;
+			left: 20px;
+			background-color: #fce3c7;
+			color: #5a5a5a;
+			padding: 4px 18px;
+			border-radius: 20px;
+			font-size: 12px;
+			font-weight: 600;
+		}
+		.data-box {
+			background-color: #e9e9f6;
+			padding: 12px 15px;
+			border-radius: 6px;
+			height: 100%;
+		}
+		.data-title {
+			display: block;
+			font-size: 12px;
+			font-weight: 700;
+			color: #333;
+			margin-bottom: 2px;
+		}
+		.data-value {
+			display: block;
+			font-size: 13px;
+			font-weight: 700;
+			color: #6558d3;
+		}
+	</style>
+
+</head>
+	<body>
+		<div class="layout has-sidebar fixed-sidebar fixed-header">
+			<div class="loader loader--active">
+				<div class="loader__icon"><svg version="1.1" id="loader-1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
+						<path opacity="0.2" fill="#000" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634c0-6.425,5.209-11.634,11.634-11.634c6.425,0,11.633,5.209,11.633,11.634C31.834,26.541,26.626,31.749,20.201,31.749z"></path>
+						<path fill="#000" d="M26.013,10.047l1.654-2.866c-2.198-1.272-4.743-2.012-7.466-2.012h0v3.312h0C22.32,8.481,24.301,9.057,26.013,10.047z"></path>
+						<animatetransform attributeType="xml" attributeName="transform" type="rotate" from="0 20 20" to="360 20 20" dur="0.5s" repeatCount="indefinite"></animatetransform>
+					</svg></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+				<div class="loader__tile"></div>
+			</div>
+			
+			
+			
+
+<div id="overlay" class="overlay"></div>
+			<div class="layout">
+		<main class="content">
+    <article class="ar-title">
+        <h2><b>Registro de Matrícula</b></h2>
+    </article>
+    
+    <!-- Student Data Card -->
+    <div class="row">
+        <div class="col-xl-12">
+            <div class="card mb-4 student-data-card">
+                <div class="student-data-badge">Datos del Estudiante</div>
+                <div class="card-body p-0">
+                    <div class="row">
+                        <!-- Fila 1 -->
+                        <div class="col-md-6 mb-3">
+                            <div class="data-box">
+                                <span class="data-title">Periodo Académico</span>
+                                <span class="data-value" id="lbl-periodo"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="data-box">
+                                <span class="data-title">Sede</span>
+                                <span class="data-value" id="lbl-sede"></span>
+                            </div>
+                        </div>
+
+                        <!-- Fila 2 -->
+                        <div class="col-md-6 mb-3">
+                            <div class="data-box">
+                                <span class="data-title">Facultad</span>
+                                <span class="data-value" id="lbl-facultad"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3">
+                            <div class="data-box">
+                                <span class="data-title">Programa</span>
+                                <span class="data-value" id="lbl-escuela"></span>
+                            </div>
+                        </div>
+
+                        <!-- Fila 3 -->
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <div class="data-box">
+                                <span class="data-title">Especialidad</span>
+                                <span class="data-value" id="lbl-especialidad"></span>
+                            </div>
+                        </div>
+                        <div class="col-md-6 mb-3 mb-md-0">
+                            <div class="data-box">
+                                <span class="data-title">Plan de Estudios</span>
+                                <span class="data-value" id="lbl-plan"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="card mt-4">
+        <div class="card-body">
+            <!-- Alert Note -->
+            <div class="alert alert-secondary d-flex" role="alert" style="background-color: #d8d8d8; border: 1px solid #c4c4c4; color: #333; font-size: 14px;">
+                <i class="fa-solid fa-circle-info" style="font-size: 18px; margin-top: 3px; margin-right: 10px;"></i>
+                <div>
+                    <strong>Nota Importante:</strong> Después de efectuar su Matrícula, debe acercarse a la Oficina de Matrícula de su facultad para recoger su Reporte Oficial de Matrícula y entregar toda la documentación que haya sido especificada por su facultad (constancias, comprobantes de pagos, etc.); de lo contrario, su Matrícula será observada.
+                </div>
+            </div>
+
+            <!-- Alert Yellow -->
+            <div class="alert alert-warning" role="alert" style="background-color: #fdf5d3; border: 1px solid #f6e696; color: #856404; font-size: 14px; font-weight: bold;">
+                (*) Asignatura Obligatoria por presentar una o más repitencias, Art. 18 Reglamento General de Matrícula.
+            </div>
+            
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped text-center " id="tablaSimulacion">
+                    <thead style="background-color: #f4f6f9; color: #495057;">
+                        <tr>
+                            <th style="width: 5%">Ciclo</th>
+                            <th style="width: 15%">tipo</th>
+                            <th style="width: 45%">Asignatura</th>
+                            <th style="width: 10%">Créditos</th>
+                            <th style="width: 15%">Sección Elegida</th>
+                            <th style="width: 10%">Elegir Sección</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbodySimulacion">
+                        <!-- Dynamic Content -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Footer Stats -->
+            <div class="row mt-4">
+                <div class="col-md-4">
+                    <div style="background-color: #d1ebf9; color: #0d4a7a; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 15px; text-align: center;">
+                        Tope de Créditos: <span id="lbl-tope-creditos">26</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background-color: #d1ebf9; color: #0d4a7a; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 15px; text-align: center;">
+                        Créditos Matriculados: <span id="lbl-creditos-matriculados">0</span>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div style="background-color: #d1ebf9; color: #0d4a7a; padding: 15px; border-radius: 8px; font-weight: bold; font-size: 15px; text-align: center;">
+                        Asignaturas Matriculadas: <span id="lbl-asignaturas-matriculadas">0</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 mb-2">
+                <div class="col-12 text-center">
+                    <button id="btn-ejecutar" class="btn btn-lg" style="background-color: #15b981; color: white; border-radius: 8px; padding: 10px 30px; font-weight: bold;">
+                        Ejecutar Matrícula
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Secciones -->
+    <div class="modal fade" id="modalSecciones" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-xl modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-radius: 8px;">
+                <div class="modal-header" style="background-color: #7b8ab8; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <h5 class="modal-title font-weight-normal">Secciones disponibles</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="opacity: 1;">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body bg-light">
+                    <div style="background-color: #f3f0fa; border-radius: 6px; padding: 15px; margin-bottom: 20px;">
+                        <span style="font-size: 13px; font-weight: bold; color: #333;">Asignatura</span><br>
+                        <span style="font-size: 13px; font-weight: bold; color: #6558d3;" id="modal-curso-nombre"></span>
+                    </div>
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered text-center" style="background-color: white;">
+                            <thead style="background-color: #f4f6f9; color: #495057;">
+                                <tr>
+                                    <th>Horarios</th>
+                                    <th>Sección</th>
+                                    <th>Aula</th>
+                                    <th>Docente</th>
+                                    <th>Matriculados <br>/ Vacantes</th>
+                                    <th>Sede</th>
+                                    <th>Seleccione</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbodySecciones">
+                                <!-- Dynamic Sections -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-center bg-light border-0 pt-0">
+                    <button type="button" class="btn btn-success" id="btn-aceptar-seccion" disabled style="border-radius: 6px; padding: 8px 25px;"><i class="fa-solid fa-check"></i> Aceptar</button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" style="border-radius: 6px; padding: 8px 25px;"><i class="fa-solid fa-xmark"></i> Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+	
+
+			</div>
+		</div>
+
+
+    <!-- Modal Progreso -->
+    <div class="modal fade" id="modalProgreso" tabindex="-1" role="dialog" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border-radius: 8px; border: none;">
+                <div class="modal-header" style="background-color: #7b8ab8; color: white; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+                    <div>
+                        <h5 class="modal-title font-weight-bold" style="font-size: 18px; margin-bottom: 2px;">Progreso</h5>
+                        <small style="font-size: 12px; opacity: 0.9;">Cargando...</small>
+                    </div>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close" style="opacity: 1;" disabled>
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body p-4">
+                    <p style="font-weight: bold; color: #333; font-size: 15px;">Se mostrará el progreso de su matrícula cuando sea su turno en el proceso. Gracias por su paciencia.</p>
+                    <div class="progress" style="height: 20px; border-radius: 4px; background-color: #e9ecef;">
+                        <div id="progreso-bar" class="progress-bar" role="progressbar" style="width: 0%; background-color: #4caf50;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+        <script src="../../assets/js/sidebar.js"></script>
+        <script src="../../assets/js/header.js"></script>
+        <script src="../../assets/data/perfil_default.js"></script>
+        <script src="../../assets/data/resumen_default.js"></script>
+        <script src="../../assets/js/dashboard.js"></script>
+        <script src="../../assets/data/rep_premat_default.js"></script>
+        <script src="../../assets/js/lib/pdf.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.umd.min.js"></script>
+        <script src="../../assets/js/lib/jspdf.plugin.autotable.min.js"></script>
+        <script src="../../assets/data/logos_base64.js"></script>
+        <script src="../../assets/data/programacion_default.js"></script><script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="../../assets/js/simulacion.js?v=2"></script>
+    </body>
+</html>
+
+
