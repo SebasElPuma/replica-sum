@@ -128,6 +128,102 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- LOGICA DEL MODO CAOS ---
+    const chaosEnable = document.getElementById('chaos-enable');
+    const chaosLagLoader = document.getElementById('chaos-lag-loader');
+    const chaosLagSecciones = document.getElementById('chaos-lag-secciones');
+    const chaosLagEjecutar = document.getElementById('chaos-lag-ejecutar');
+    const chaosLagBarra = document.getElementById('chaos-lag-barra');
+    const chaosProb503 = document.getElementById('chaos-prob-503');
+    const chaosProbSesion = document.getElementById('chaos-prob-sesion');
+    const chaosProbCruce = document.getElementById('chaos-prob-cruce');
+    const chaosProbVacantes = document.getElementById('chaos-prob-vacantes');
+
+    // Update labels for range inputs
+    function updateRangeLabel(id, valId) {
+        const el = document.getElementById(id);
+        const val = document.getElementById(valId);
+        if (el && val) {
+            el.addEventListener('input', () => val.innerText = el.value);
+        }
+    }
+    updateRangeLabel('chaos-prob-503', 'val-prob-503');
+    updateRangeLabel('chaos-prob-sesion', 'val-prob-sesion');
+    updateRangeLabel('chaos-prob-cruce', 'val-prob-cruce');
+    updateRangeLabel('chaos-prob-vacantes', 'val-prob-vacantes');
+
+    function toggleChaosInputs(enabled) {
+        if(chaosLagLoader) chaosLagLoader.disabled = !enabled;
+        if(chaosLagSecciones) chaosLagSecciones.disabled = !enabled;
+        if(chaosLagEjecutar) chaosLagEjecutar.disabled = !enabled;
+        if(chaosLagBarra) chaosLagBarra.disabled = !enabled;
+        if(chaosProb503) chaosProb503.disabled = !enabled;
+        if(chaosProbSesion) chaosProbSesion.disabled = !enabled;
+        if(chaosProbCruce) chaosProbCruce.disabled = !enabled;
+        if(chaosProbVacantes) chaosProbVacantes.disabled = !enabled;
+        const btnSaveChaos = document.getElementById('btn-save-chaos');
+        if(btnSaveChaos) btnSaveChaos.disabled = !enabled;
+    }
+
+    function loadChaosConfig() {
+        const configStr = localStorage.getItem('sum_chaos_config');
+        if (configStr) {
+            try {
+                const config = JSON.parse(configStr);
+                if (chaosEnable) {
+                    const isActive = localStorage.getItem('sum_chaos_active');
+                    chaosEnable.checked = isActive === '1';
+                }
+                if (chaosLagLoader) chaosLagLoader.value = config.lag_loader || 0;
+                if (chaosLagSecciones) chaosLagSecciones.value = config.lag_secciones || 0;
+                if (chaosLagEjecutar) chaosLagEjecutar.value = config.lag_ejecutar || 0;
+                if (chaosLagBarra) chaosLagBarra.value = config.lag_barra || 200;
+                if (chaosProb503) { chaosProb503.value = config.prob_503 || 0; document.getElementById('val-prob-503').innerText = chaosProb503.value; }
+                if (chaosProbSesion) { chaosProbSesion.value = config.prob_sesion || 0; document.getElementById('val-prob-sesion').innerText = chaosProbSesion.value; }
+                if (chaosProbCruce) { chaosProbCruce.value = config.prob_cruce || 0; document.getElementById('val-prob-cruce').innerText = chaosProbCruce.value; }
+                if (chaosProbVacantes) { chaosProbVacantes.value = config.prob_vacantes || 0; document.getElementById('val-prob-vacantes').innerText = chaosProbVacantes.value; }
+                
+                toggleChaosInputs(chaosEnable.checked);
+            } catch (e) {
+                console.error("Error parsing sum_chaos_config", e);
+            }
+        } else {
+            toggleChaosInputs(false);
+        }
+    }
+
+    const btnSaveChaos = document.getElementById('btn-save-chaos');
+    if (btnSaveChaos) {
+        btnSaveChaos.addEventListener('click', () => {
+            const config = {
+                lag_loader: parseInt(chaosLagLoader.value) || 0,
+                lag_secciones: parseInt(chaosLagSecciones.value) || 0,
+                lag_ejecutar: parseInt(chaosLagEjecutar.value) || 0,
+                lag_barra: parseInt(chaosLagBarra.value) || 200,
+                prob_503: parseInt(chaosProb503.value) || 0,
+                prob_sesion: parseInt(chaosProbSesion.value) || 0,
+                prob_cruce: parseInt(chaosProbCruce.value) || 0,
+                prob_vacantes: parseInt(chaosProbVacantes.value) || 0
+            };
+            localStorage.setItem('sum_chaos_config', JSON.stringify(config));
+            showAlert('Configuración del Modo Caos guardada.', 'success');
+        });
+    }
+
+    if (chaosEnable) {
+        chaosEnable.addEventListener('change', () => {
+            toggleChaosInputs(chaosEnable.checked);
+            if (chaosEnable.checked) {
+                localStorage.setItem('sum_chaos_active', '1');
+                showAlert('Modo Caos activado.', 'success');
+            } else {
+                localStorage.removeItem('sum_chaos_active');
+                showAlert('Modo Caos desactivado.', 'success');
+            }
+        });
+    }
+
     // Initial load
     loadData();
+    loadChaosConfig();
 });
