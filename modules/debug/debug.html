@@ -88,6 +88,75 @@
                         <button id="btn-borrar-matricula" class="btn btn-warning" style="border-radius: 5px; color: white;"><i class="fa-solid fa-eraser"></i> Borrar Matrícula</button>
                     </div>
                 </div>
+
+                <!-- MODO CAOS -->
+                <div class="debug-container mt-4 mb-5" style="border-left: 5px solid #dc3545;">
+                    <h3 class="mb-4 text-danger"><i class="fa-solid fa-fire"></i> Configuración de Matrícula</h3>
+                    <p class="text-muted mb-4">Ajusta estas variables para simular la experiencia real del SUM durante alta demanda.</p>
+
+                    <div class="custom-control custom-switch mb-4">
+                        <input type="checkbox" class="custom-control-input" id="chaos-enable">
+                        <label class="custom-control-label font-weight-bold" for="chaos-enable">Habilitar Modo Caos</label>
+                    </div>
+
+                    <div class="row">
+                        <!-- Lags -->
+                        <div class="col-md-6">
+                            <h5 class="text-secondary"><i class="fa-solid fa-hourglass-half"></i> Retrasos y Lag (ms)</h5>
+                            <hr>
+                            <div class="form-group">
+                                <label for="chaos-lag-loader">Lag en animación inicial (barras verdes):</label>
+                                <input type="number" class="form-control" id="chaos-lag-loader" value="0" min="0" step="500">
+                                <small class="form-text text-muted">Añade retraso al cargar cualquier página.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-lag-secciones">Lag al abrir lista de secciones:</label>
+                                <input type="number" class="form-control" id="chaos-lag-secciones" value="0" min="0" step="500">
+                                <small class="form-text text-muted">Retraso al hacer clic en el botón amarillo de elegir sección.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-lag-ejecutar">Lag al Ejecutar Matrícula:</label>
+                                <input type="number" class="form-control" id="chaos-lag-ejecutar" value="0" min="0" step="500">
+                                <small class="form-text text-muted">Tiempo de "pensamiento" antes de procesar la matrícula.</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-lag-barra">Lentitud de Barra de Progreso:</label>
+                                <input type="number" class="form-control" id="chaos-lag-barra" value="200" min="50" step="50">
+                                <small class="form-text text-muted">Velocidad de la barra (por defecto 200ms por iteración).</small>
+                            </div>
+                        </div>
+
+                        <!-- Errores -->
+                        <div class="col-md-6">
+                            <h5 class="text-secondary"><i class="fa-solid fa-triangle-exclamation"></i> Errores y Fallos (%)</h5>
+                            <hr>
+                            <div class="form-group">
+                                <label for="chaos-prob-503">Prob. de Error Servidor (503 / 405):</label>
+                                <input type="range" class="custom-range" id="chaos-prob-503" min="0" max="100" value="0">
+                                <small class="form-text text-muted">Valor: <span id="val-prob-503">0</span>%</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-prob-sesion">Prob. de Sesión Expirada:</label>
+                                <input type="range" class="custom-range" id="chaos-prob-sesion" min="0" max="100" value="0">
+                                <small class="form-text text-muted">Valor: <span id="val-prob-sesion">0</span>%</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-prob-cruce">Prob. Falso Cruce Horarios:</label>
+                                <input type="range" class="custom-range" id="chaos-prob-cruce" min="0" max="100" value="0">
+                                <small class="form-text text-muted">Valor: <span id="val-prob-cruce">0</span>%</small>
+                            </div>
+                            <div class="form-group">
+                                <label for="chaos-prob-vacantes">Prob. Vacantes Agotadas:</label>
+                                <input type="range" class="custom-range" id="chaos-prob-vacantes" min="0" max="100" value="0">
+                                <small class="form-text text-muted">Valor: <span id="val-prob-vacantes">0</span>%</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-4">
+                        <button id="btn-save-chaos" class="btn btn-danger" style="border-radius: 5px;"><i class="fa-solid fa-fire"></i> Guardar Cambios</button>
+                    </div>
+                </div>
 			</div>
         </div>
 
