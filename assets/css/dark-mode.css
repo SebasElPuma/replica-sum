@@ -1,0 +1,671 @@
+/* ==============================================================
+   DARK MODE (AMOLED STYLE)
+   This CSS overrides default light theme styles when 
+   body has the .dark-mode class.
+   ============================================================== */
+
+/* Base body styles */
+body.dark-mode {
+    background-color: #121824 !important;
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .content {
+    background-color: #121824 !important;
+}
+
+/* Sidebar and Header Base */
+body.dark-mode .layout .sidebar {
+    background-color: #1c2944 !important;
+    border-color: #222 !important;
+}
+
+body.dark-mode .header {
+    background-color: #23334f !important;
+    border-color: #222 !important;
+}
+
+body.dark-mode .layout .sidebar .menu ul li a {
+    color: #b0b0b0 !important;
+}
+body.dark-mode .layout .sidebar .menu ul li a:hover {
+    background-color: #1a1a1a !important;
+    color: #ffffff !important;
+}
+body.dark-mode .layout .sidebar .menu ul li.active > a {
+    background-color: #222 !important;
+    color: #ffffff !important;
+    border-left-color: #5b6271 !important; /* Keep a muted brand color */
+}
+
+/* Dropdown Menu */
+body.dark-mode .dropdown-menu {
+    background-color: #121212 !important;
+    border: 1px solid #333 !important;
+}
+body.dark-mode .dropdown-item {
+    color: #e0e0e0 !important;
+}
+body.dark-mode .dropdown-item:hover {
+    background-color: #2a2a2a !important;
+    color: #ffffff !important;
+}
+
+/* Cards */
+body.dark-mode .card {
+    background-color: #1E293B !important;
+    border: 1px solid #222 !important;
+    box-shadow: none !important;
+}
+body.dark-mode .card-header {
+    background-color: #111 !important;
+    border-bottom: 1px solid #222 !important;
+    color: #fff !important;
+}
+
+
+/*Information card*/
+body.dark-mode .information {
+    background-color: #1E293B !important;
+}
+
+/*Letra Estudiante bajo nombre alumno*/
+body.dark-mode .mail {
+    color: #A0A0A0
+}
+
+/*Contenedor de información del estudiante*/
+body.dark-mode .middle-container {
+    background-color: #c6c0e5;
+}
+
+/*Tag del info card*/
+body.dark-mode .tag {
+    background-color: #121824 !important;
+    color: #617595 !important;
+}
+
+/*Boton Ver más...*/
+body.dark-mode .button.historial,
+body.dark-mode .button.matricula,
+body.dark-mode .button.programacion,
+body.dark-mode .button.Rep_matricula,
+body.dark-mode .button.Rep_prematricula,
+body.dark-mode .button.Rep_deudas,
+body.dark-mode .button.plan,
+body.dark-mode .button.perfil {
+    background-color: #2d3d58;
+    border-color: #121824;
+    color: #a3b5d2;
+}
+
+/*Subcontenedor de datos de estudiante*/
+body.dark-mode .middle-container.d-flex.justify-content-start.mt-3.p-2 {
+    background-color: #2d3d58 !important;
+}
+
+/*Letras del subcontenedor*/
+body.dark-mode .current-balance {
+    color: #ffffff;
+}
+
+/*Letra del valor del subcontenedor - alternativo #c6c0e5*/
+body.dark-mode .amount {
+    color: #a3b5d2 !important;
+}
+
+/*2. MI PERFIL*/
+body.dark-mode .card-perfil {
+    background-color: #2d3d58;
+}
+body.dark-mode .accordion-tabs,
+body.dark-mode .accordion-tab.accordion-active,
+body.dark-mode .accordion-item.accordion-active {
+    background-color: #2d3d58;
+}
+body.dark-mode .accordion-tab,
+body.dark-mode .accordion-tab.accordion-active {
+    color: #e0e0e0;
+}
+
+body.dark-mode #btnDescargar {
+    background-color: #d0b753;
+    color: #ebebeb;
+}
+
+/*2. Historial Academico*/
+/* Colores para el gráfico de Historial Académico (ApexCharts) */
+body.dark-mode .apexcharts-xaxis-title text,
+body.dark-mode .apexcharts-yaxis-title text {
+    fill: #b3c6e5 !important; /* Color para los títulos "Periodo Académico" y "Promedio Ponderado" */
+}
+
+body.dark-mode .apexcharts-xaxis-label,
+body.dark-mode .apexcharts-yaxis-label {
+    fill: #b3c6e5 !important; /* Color para los números de los ejes */
+}
+
+body.dark-mode .apexcharts-title-text {
+    fill: #e0e0e0 !important; /* Color para el título principal del gráfico */
+}
+
+/* Opcional: Para cambiar el color de las líneas guía de la cuadrícula de fondo */
+body.dark-mode .apexcharts-gridline {
+    stroke: #2d3d58 !important; 
+}
+
+
+/* Titles and Typography */
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode h5, 
+body.dark-mode h6 {
+    color: #f5f5f5 !important;
+}
+
+body.dark-mode .ar-title {
+    background: none !important;
+    -webkit-text-fill-color: initial !important;
+}
+
+body.dark-mode .ar-title h2 b {
+    color: #a3b5d2 !important; /* Aquí pones el color sólido que prefieras */
+}
+
+
+body.dark-mode .text-muted,
+body.dark-mode .text-secondary {
+    color: #888 !important;
+}
+body.dark-mode .text-dark {
+    color: #ddd !important;
+}
+
+/* Inputs and Forms */
+body.dark-mode .form-control,
+body.dark-mode .custom-select {
+    background-color: #111 !important;
+    border: 1px solid #333 !important;
+    color: #fff !important;
+}
+body.dark-mode .form-control:focus,
+body.dark-mode .custom-select:focus {
+    background-color: #1a1a1a !important;
+    border-color: #555 !important;
+    color: #fff !important;
+    box-shadow: none !important;
+}
+body.dark-mode input[readonly] {
+    background-color: #080808 !important;
+    color: #888 !important;
+}
+
+/* ==============================================================
+   TABLAS (Ej. Simulación de Matrícula)
+   ============================================================== */
+/* Quitar fondos blancos forzados en el HTML y dar color al texto */
+body.dark-mode table.table {
+    background-color: transparent !important; 
+    color: #cbd5e1 !important;
+}
+/* Cabeceras de las tablas en azul oscuro */
+body.dark-mode .table th,
+body.dark-mode .table thead,
+body.dark-mode .table thead tr {
+    background-color: #2d3d58 !important; 
+    border-color: #3d4f6b !important;
+    color: #ffffff !important;
+}
+/* Celdas normales */
+body.dark-mode .table td {
+    border-color: #3d4f6b !important;
+}
+
+/* Forzar transparencia a las celdas para matar el fondo blanco de theme-white.css,
+   EXCEPTO a las que tienen color morado propio inyectado (cabeceras de ciclos y periodos) */
+body.dark-mode .table > tbody > tr > td:not([style*="background"]) {
+    background-color: transparent !important;
+}
+
+/* Efecto de celdas intercaladas (rayado) muy suave - Aplicado a los TD para matar el blanco */
+body.dark-mode .table-striped > tbody > tr:nth-child(odd) > td:not([style*="background"]),
+body.dark-mode .table-striped > tbody > tr:nth-child(odd) > th {
+    background-color: rgba(255, 255, 255, 0.03) !important;
+}
+body.dark-mode .table-hover > tbody > tr:hover > td:not([style*="background"]),
+body.dark-mode .table-hover > tbody > tr:hover > th {
+    background-color: rgba(255, 255, 255, 0.08) !important;
+}
+
+
+
+/* Custom Widgets (Student Data Box, etc) */
+body.dark-mode .demo-page-content section {
+    background-color: #1E293B !important; 
+    border: 1px solid #2d3d58 !important; 
+}
+
+/* Título flotante "Datos del Estudiante" */
+body.dark-mode .student-data-badge {
+    background-color: #2d3d58 !important; 
+    color: #ffffff !important;
+    border: 1px solid #3d4f6b !important;
+    border-radius: 6px;
+}
+
+/* Cajitas individuales de datos (Sede, Facultad, etc) */
+body.dark-mode .data-box {
+    background-color: #1E293B !important; 
+    border: 1px solid #3d4f6b !important;
+    border-radius: 8px;
+}
+
+/* Letras grises/claras para el subtítulo */
+body.dark-mode .data-title {
+    color: #cbd5e1 !important;
+}
+
+/* Valor resaltado en azul claro */
+body.dark-mode .data-value {
+    color: #6eb5ff !important; 
+}
+
+/* ==============================================================
+   AJUSTES GENERALES Y MODALES ESPECÍFICOS
+   ============================================================== */
+/* Corregir el fondo negro inyectado por la clase bg-light */
+body.dark-mode .bg-light {
+    background-color: transparent !important; /* Ahora heredará el azul del modal */
+}
+
+/* Contenedor del subtítulo "Asignatura" en el modal de Simulacion */
+body.dark-mode #modalSecciones .modal-body > div[style*="background-color"] {
+    background-color: #2d3d58 !important; /* Reemplaza el morado clarito por azul marino */
+    border: 1px solid #3d4f6b !important;
+}
+
+/* Textos de ese mismo contenedor */
+body.dark-mode #modalSecciones .modal-body > div[style*="background-color"] span {
+    color: #cbd5e1 !important; /* Gris claro para el título Asignatura */
+}
+
+body.dark-mode #modal-curso-nombre {
+    color: #6eb5ff !important; /* Azul resaltado para el nombre de la materia */
+}
+
+
+
+/* ==============================================================
+   AVISOS Y NOTAS (Alerts)
+   ============================================================== */
+/* Nota secundaria (gris claro originalmente) */
+body.dark-mode .alert-secondary {
+    background-color: #2d3d58 !important;
+    border-color: #3d4f6b !important;
+    color: #ffffff !important;
+}
+/* Nota de advertencia (amarilla originalmente) */
+body.dark-mode .alert-warning {
+    background-color: rgba(255, 193, 7, 0.15) !important;
+    border-color: rgba(255, 193, 7, 0.3) !important;
+    color: #ffffff !important;
+}
+/* Nota informativa (azul celeste) */
+body.dark-mode .alert-info {
+    background-color: rgba(23, 162, 184, 0.15) !important;
+    border-color: rgba(23, 162, 184, 0.3) !important;
+    color: #ffffff !important;
+}
+
+
+/* ==============================================================
+   MODALES NATIVOS (Ej. Ver Horarios)
+   ============================================================== */
+body.dark-mode .modal-content {
+    background-color: #1E293B !important;
+    border: 1px solid #3d4f6b !important;
+}
+body.dark-mode .modal-header {
+    background-color: #2d3d58 !important;
+    border-bottom: 1px solid #3d4f6b !important;
+}
+body.dark-mode .modal-footer {
+    background-color: #1E293B !important;
+}
+body.dark-mode .close {
+    color: #a3b5d2 !important;
+    text-shadow: none !important;
+}
+body.dark-mode .close:hover {
+    color: #ff6b6b !important;
+}
+
+/* Forzar colores en la tabla de Horarios (sobrescribe sus estilos en línea) */
+body.dark-mode #horariosModal table {
+    color: #cbd5e1 !important; /* Gris claro para el contenido */
+}
+body.dark-mode #horariosModal table thead tr {
+    background-color: #2d3d58 !important; /* Azul marino para la cabecera */
+    color: #ffffff !important; /* Blanco para los títulos de columnas */
+}
+
+/* ==============================================================
+   ALERTAS EMERGENTES (SweetAlert2)
+   ============================================================== */
+body.dark-mode .swal2-popup {
+    background: #1E293B !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #3d4f6b !important;
+}
+body.dark-mode .swal2-title {
+    color: #ffffff !important;
+}
+body.dark-mode .swal2-html-container {
+    color: #cbd5e1 !important;
+}
+body.dark-mode .swal2-actions button {
+    border: 1px solid #3d4f6b !important;
+}
+
+
+/* Debug page specifically */
+body.dark-mode .debug-container {
+    background: #0a0a0a !important;
+    border-color: #333 !important;
+}
+body.dark-mode #json-editor {
+    background-color: #000 !important;
+    color: #0f0 !important; /* Hacker terminal style for json */
+    border: 1px solid #333 !important;
+}
+
+/* Dark mode toggle button styles */
+#btn-dark-mode {
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+#btn-dark-mode:hover {
+    transform: scale(1.1);
+}
+#btn-dark-mode i.fa-sun {
+    color: #ffc107 !important;
+}
+#btn-dark-mode i.fa-moon {
+    color: #a0a0a0 !important;
+}
+
+/* ==============================================================
+   FICHA SOCIOECONÓMICA (Formularios)
+   ============================================================== */
+
+/* Color blanco para los textos/etiquetas de los formularios */
+body.dark-mode .demo-page-content label,
+body.dark-mode .demo-page-content h1,
+body.dark-mode .demo-page-content span {
+    color: #ffffff !important;
+}
+
+/* Fondo gris oscuro para los subcontenedores de cada campo */
+body.dark-mode .nice-form-group {
+    background-color: #1E293B !important; /* Gris oscuro */
+    margin-bottom: 15px;
+}
+
+/* Asegurar que los inputs deshabilitados (como los de Datos Personales) se vean bien */
+body.dark-mode .nice-form-group input:disabled,
+body.dark-mode .nice-form-group select:disabled {
+    background-color: #1a1a1a !important;
+    color: #a0a0a0 !important;
+    border-color: #333 !important;
+}
+
+/* Contenedores agrupadores secundarios (Lugar de nacimiento, Dirección, etc) */
+body.dark-mode .well2 {
+    background-color: transparent !important; /* Para que tome el color de fondo de la sección principal */
+    border: 1px solid #3d4f6b !important; /* Un borde sutil que combine con el diseño */
+}
+
+/* Título de los contenedores secundarios */
+body.dark-mode .well-legend2 {
+    background-color: #2d3d58 !important; /* Fondo oscuro para el título tipo pastilla */
+    color: #e0e0e0 !important; /* Letra clara */
+    border: 1px solid #3d4f6b !important;
+}
+
+/* ==============================================================
+   TARJETAS FAMILIA SALUD
+   ============================================================== */
+
+/* Fondo de la tarjeta */
+body.dark-mode .family-card {
+    background: #1E293B !important; 
+    border: 1px solid #3d4f6b !important;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+body.dark-mode .family-card:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Textos dentro de la tarjeta */
+body.dark-mode .family-name {
+    color: #ffffff !important;
+}
+
+body.dark-mode .family-relation {
+    color: #a3b5d2 !important; /* Tono acero/celeste */
+}
+
+body.dark-mode .family-details {
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .family-details strong {
+    color: #ffffff !important;
+}
+
+/* Tarjeta para agregar nuevo familiar (borde punteado) */
+body.dark-mode .family-card-add {
+    background: transparent !important;
+    border: 2px dashed #3d4f6b !important;
+    color: #8b9dbf !important;
+}
+
+body.dark-mode .family-card-add:hover {
+    border-color: #6e8efb !important;
+    color: #6e8efb !important;
+    background: rgba(110, 142, 251, 0.1) !important;
+}
+
+/* Botones de acción (Editar / Eliminar) que aparecen al pasar el mouse */
+body.dark-mode .family-btn {
+    background: #2d3d58 !important;
+    color: #e0e0e0 !important;
+    border: 1px solid #3d4f6b !important;
+}
+
+body.dark-mode .family-btn:hover {
+    background: #3d4f6b !important;
+}
+
+body.dark-mode .family-btn.delete:hover {
+    color: #ff6b6b !important;
+    background: #4a2525 !important;
+}
+
+body.dark-mode .family-btn.edit:hover {
+    color: #6eb5ff !important;
+    background: #1c3654 !important;
+}
+
+/* ==============================================================
+   MODAL DE AGREGAR FAMILIAR
+   ============================================================== */
+
+/* Fondo del menú emergente */
+body.dark-mode .custom-modal {
+    background-color: #1E293B !important; /* Mismo fondo de las tarjetas */
+    border: 1px solid #3d4f6b !important;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Contenedor del título (Encabezado del modal) */
+body.dark-mode .custom-modal-header {
+    border-bottom: 1px solid #3d4f6b !important; /* Línea divisoria oscura */
+}
+
+/* Título principal del modal */
+body.dark-mode .custom-modal-header h2 {
+    color: #ffffff !important;
+}
+
+/* Botón de cerrar (la X de arriba a la derecha) */
+body.dark-mode .custom-modal-close {
+    color: #a3b5d2 !important;
+}
+
+body.dark-mode .custom-modal-close:hover {
+    color: #ff6b6b !important; /* Que se pinte rojo al pasar el mouse */
+}
+
+/* Botón de Cancelar */
+body.dark-mode .btn-modern.cancel {
+    background: #2d3d58 !important;
+    color: #cbd5e1 !important;
+}
+
+body.dark-mode .btn-modern.cancel:hover {
+    background: #3d4f6b !important;
+    color: #ffffff !important;
+}
+
+/* ==============================================================
+   MENÚ LATERAL DE PORCENTAJES (Ficha Socioeconómica)
+   ============================================================== */
+
+/* Fondo de la cajita flotante */
+body.dark-mode .demo-page .demo-page-navigation nav {
+    background: #1E293B !important;
+    border: 1px solid #3d4f6b !important;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* Letras de los enlaces (ej. Datos Alumno) */
+body.dark-mode .demo-page .demo-page-navigation a {
+    color: #cbd5e1 !important;
+}
+
+/* Iconos de los enlaces */
+body.dark-mode .demo-page .demo-page-navigation a i {
+    color: #a3b5d2 !important;
+}
+
+/* Efecto al pasar el mouse por encima del enlace */
+body.dark-mode .demo-page .demo-page-navigation a:hover {
+    background: #2d3d58 !important;
+    color: #ffffff !important;
+}
+
+/* Color exclusivo para los porcentajes (100%) */
+body.dark-mode .demo-page .demo-page-navigation a span {
+    color: #6eb5ff !important; /* Un azul brillante para que resalte la completitud */
+}
+
+/* ==============================================================
+   REPORTES DE MATRÍCULA Y PREMATRÍCULA
+   ============================================================== */
+
+/* Forzar texto completamente blanco en los valores de la tabla de Rep. Matrícula */
+body.dark-mode #tbodyRepMat td,
+body.dark-mode #tablaEvaluaciones td {
+    color: #ffffff !important;
+}
+
+/* Igualar el estilo del número de ciclo en Rep. Prematrícula al de Rep. Matrícula */
+body.dark-mode .label-dark {
+    background-color: #adb5bd !important;
+    color: #000000 !important;
+    font-size: 13px !important;
+    font-weight: bold !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    display: inline-block;
+}
+
+/* ==============================================================
+   REPORTE DE EVALUACIÓN
+   ============================================================== */
+/* Reemplazar el fondo gris claro inyectado en la fila "Promedio Final" por un azul oscuro que resalte */
+body.dark-mode .table > tbody > tr > td[style*="#f4f6f9"] {
+    background-color: #2d3d58 !important;
+    color: #ffffff !important;
+}
+/* Forzar que el texto de la fórmula (que tiene gris oscuro #5a5a5a inyectado) sea blanco */
+body.dark-mode .table > tbody > tr > td[style*="#5a5a5a"] {
+    color: #ffffff !important;
+}
+
+/* ==============================================================
+   PLAN DE ESTUDIOS
+   ============================================================== */
+/* 1. Forzar texto blanco en las celdas normales, matando el gris oscuro inyectado */
+body.dark-mode #tbodyPlanEstudios td {
+    color: #ffffff !important;
+}
+
+/* 2. Cabecera de Ciclo: Reemplazar el fondo morado claro sólido por uno oscuro translúcido */
+body.dark-mode #tbodyPlanEstudios td[style*="#ede7f6"] {
+    background-color: rgba(101, 88, 211, 0.15) !important;
+    color: #8c82eb !important; /* Morado claro para que resalte el texto */
+    border-color: #3d4f6b !important;
+}
+
+/* 3. Celdas de Pre-requisito: Reemplazar el fondo verde brillante por uno oscuro translúcido */
+body.dark-mode #tbodyPlanEstudios td[style*="#e8f5e9"] {
+    background-color: rgba(46, 125, 50, 0.15) !important;
+    color: #81c784 !important; /* Verde claro visible en modo oscuro */
+}
+
+/* ==============================================================
+   MANUALES Y TUTORIALES
+   ============================================================== */
+/* Contenedor principal de los manuales */
+body.dark-mode .manual-container {
+    background-color: #1E293B !important;
+    box-shadow: none !important;
+}
+
+/* Tarjetas individuales de cada manual */
+body.dark-mode .manual-card {
+    background-color: #2d3d58 !important; /* Azul marino para diferenciar del fondo */
+    border-color: #3d4f6b !important;
+}
+
+/* Efecto al pasar el mouse por encima de la tarjeta */
+body.dark-mode .manual-card:hover {
+    background-color: #344869 !important; /* Ligero brillo */
+    border-color: #6eb5ff !important;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4) !important;
+}
+
+/* Círculo del ícono de la tarjeta */
+body.dark-mode .manual-icon {
+    background-color: #1E293B !important; /* Fondo oscuro */
+    color: #6eb5ff !important; /* Icono celeste brillante */
+}
+
+/* Título de la tarjeta ("Mi perfil", "Reporte...", etc) */
+body.dark-mode .manual-title {
+    color: #ffffff !important;
+}
+
+/* Descripción pequeña debajo del título */
+body.dark-mode .manual-desc {
+    color: #cbd5e1 !important;
+}
+
+/* Texto del enlace "Ver video" */
+body.dark-mode .manual-action {
+    color: #6eb5ff !important;
+}

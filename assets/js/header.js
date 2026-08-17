@@ -7,8 +7,14 @@ document.addEventListener('DOMContentLoaded', function() {
 	<a id="btn-toggle" href="#" class="sidebar-toggler break-point-lg">
 		<i class="fa-solid fa-bars"></i>
 	</a>
-	<div class="d-flex">
+	
+	<div id="btn-dark-mode" style="font-size: 18px; cursor: pointer; margin-right: auto; padding-left: 15px;" title="Cambiar Tema">
+		<i class="fa-solid fa-moon text-secondary"></i>
+	</div>
+
+	<div class="d-flex align-items-center">
 		<div class="timer mt-1 mr-2" data-minutes-left="15"></div>
+
 		<div class="dropdown ml-2 mr-2 dd-hide">
 			<a class="btn btn-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
 				<span class="user-fullname"></span>
@@ -33,8 +39,37 @@ document.addEventListener('DOMContentLoaded', function() {
     if (content) {
         content.insertAdjacentHTML('beforebegin', headerHTML);
         
+        // --- LÓGICA MODO OSCURO ---
+        const btnDarkMode = document.getElementById('btn-dark-mode');
+        const iconDarkMode = btnDarkMode.querySelector('i');
+        
+        // Al cargar, revisar estado actual
+        if (localStorage.getItem('sum_theme') === 'dark') {
+            document.body.classList.add('dark-mode');
+            iconDarkMode.classList.remove('fa-moon', 'text-secondary');
+            iconDarkMode.classList.add('fa-sun', 'text-warning');
+        }
+
+        // Evento click
+        btnDarkMode.addEventListener('click', () => {
+            const isDark = document.body.classList.toggle('dark-mode');
+            if (isDark) {
+                localStorage.setItem('sum_theme', 'dark');
+                iconDarkMode.classList.remove('fa-moon', 'text-secondary');
+                iconDarkMode.classList.add('fa-sun', 'text-warning');
+            } else {
+                localStorage.setItem('sum_theme', 'light');
+                iconDarkMode.classList.remove('fa-sun', 'text-warning');
+                iconDarkMode.classList.add('fa-moon', 'text-secondary');
+            }
+        });
+
         // Dispatch custom event to notify that header has loaded
         const event = new Event('headerLoaded');
         document.dispatchEvent(event);
     }
 });
+// Immediate application to prevent flash (if header.js is executed sync)
+if (localStorage.getItem('sum_theme') === 'dark') {
+    document.body.classList.add('dark-mode');
+}
