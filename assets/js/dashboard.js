@@ -248,12 +248,23 @@
         // 5. Page Transition Loader
         const loader = document.querySelector('.loader');
         if (loader) {
-            // Hide loader after a short delay on page load
+            let extraLag = 0;
+            const chaosActive = localStorage.getItem('sum_chaos_active') === '1';
+            
+            if (chaosActive) {
+                try {
+                    const configStr = localStorage.getItem('sum_chaos_config');
+                    if (configStr) {
+                        const config = JSON.parse(configStr);
+                        if (config.lag_loader) extraLag = parseInt(config.lag_loader);
+                    }
+                } catch (e) {}
+            }
+
+            // Hide loader after a short delay on page load + chaos lag
             setTimeout(() => {
                 loader.classList.remove('loader--active');
-            }, 150);
-
-
+            }, 150 + extraLag);
         }
     }
 
