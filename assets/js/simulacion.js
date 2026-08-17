@@ -1,4 +1,13 @@
 document.addEventListener('DOMContentLoaded', () => {
+    let chaosConfig = { enabled: false };
+    try {
+        const configStr = localStorage.getItem('sum_chaos_config');
+        if (configStr) {
+            chaosConfig = JSON.parse(configStr);
+        }
+    } catch (e) {}
+    chaosConfig.enabled = localStorage.getItem('sum_chaos_active') === '1';
+
     let preMatData = localStorage.getItem('sum_rep_premat_data');
     if (!preMatData) {
         preMatData = window.REP_PREMAT_DEFAULT_DATA;
@@ -93,82 +102,98 @@ document.addEventListener('DOMContentLoaded', () => {
         const btn = e.target.closest('.btn-elegir');
         if (btn) {
             console.log('Botón elegir sección clickeado. data-index:', btn.getAttribute('data-index'));
-            try {
-            currentSelectingIndex = parseInt(btn.getAttribute('data-index'));
-            const curso = cursos[currentSelectingIndex];
             
-            document.getElementById('modal-curso-nombre').innerText = curso.asignatura;
-            
-            const tbodySecciones = document.getElementById('tbodySecciones');
-            tbodySecciones.innerHTML = '';
+            const openModalLogic = () => {
+                try {
+                currentSelectingIndex = parseInt(btn.getAttribute('data-index'));
+                const curso = cursos[currentSelectingIndex];
+                
+                document.getElementById('modal-curso-nombre').innerText = curso.asignatura;
+                
+                const tbodySecciones = document.getElementById('tbodySecciones');
+                tbodySecciones.innerHTML = '';
 
-            // Find sections in progData
-            let foundSections = [];
-            if (progData && progData.planes) {
-                progData.planes.forEach(plan => {
-                    plan.ciclos.forEach(ciclo => {
-                        ciclo.cursos.forEach(c => {
-                            if (c.asignatura === curso.asignatura) {
-                                foundSections.push(c);
-                            }
+                // Find sections in progData
+                let foundSections = [];
+                if (progData && progData.planes) {
+                    progData.planes.forEach(plan => {
+                        plan.ciclos.forEach(ciclo => {
+                            ciclo.cursos.forEach(c => {
+                                if (c.asignatura === curso.asignatura) {
+                                    foundSections.push(c);
+                                }
+                            });
                         });
                     });
-                });
-            }
-
-            // Mock some sections if none found
-            if (foundSections.length === 0) {
-                const numSec = Math.floor(Math.random() * 3) + 1;
-                for (let i = 1; i <= numSec; i++) {
-                    const vac = Math.floor(Math.random() * 45) + 1;
-                    const matric = Math.floor(Math.random() * vac);
-                    foundSections.push({
-                        seccion: i.toString(),
-                        horarios: "LUNES 08:00 - 10:00\nMIERCOLES 08:00 - 10:00",
-                        aula: "101",
-                        docente: "DOCENTE PRUEBA " + i,
-                        matriculados: (i===1) ? 45 : matric, // force one full for testing
-                        tope: (i===1) ? 45 : vac
-                    });
                 }
-            }
 
-            foundSections.forEach((sec, idx) => {
-                const tr = document.createElement('tr');
-                const isFull = sec.matriculados >= sec.tope;
-                
-                let selectedHtml = isFull 
-                    ? `<span class="badge badge-warning" style="background-color: #ffc107; color: #212529; font-size: 13px; padding: 5px 10px;">Sección llena</span>`
-                    : `<input type="radio" name="radio-seccion" value="${sec.seccion}" ${selectedSections[currentSelectingIndex] === sec.seccion ? 'checked' : ''} style="transform: scale(1.5);">`;
+                // Mock some sections if none found
+                if (foundSections.length === 0) {
+                    const numSec = Math.floor(Math.random() * 3) + 1;
+                    for (let i = 1; i <= numSec; i++) {
+                        const vac = Math.floor(Math.random() * 45) + 1;
+                        const matric = Math.floor(Math.random() * vac);
+                        foundSections.push({
+                            seccion: i.toString(),
+                            horarios: "LUNES 08:00 - 10:00\nMIERCOLES 08:00 - 10:00",
+                            aula: "101",
+                            docente: "DOCENTE PRUEBA " + i,
+                            matriculados: (i===1) ? 45 : matric, // force one full for testing
+                            tope: (i===1) ? 45 : vac
+                        });
+                    }
+                }
 
-                tr.innerHTML = `
-                    <td class="align-middle text-left" style="white-space: pre-line; font-size: 12px;">${sec.horarios}</td>
-                      <td class="align-middle">
-                        <span class="label-primary" style="padding: 4px 8px; font-size: 13px;">${sec.seccion}</span>
-                      </td>
-                    <td class="align-middle">${sec.aula}</td>
-                    <td class="align-middle text-left" style="font-size: 12px;">${sec.docente}</td>
-                    <td class="align-middle">${sec.matriculados} / ${sec.tope}</td>
-                    <td class="align-middle" style="font-size: 12px;">20 - FISI</td>
-                    <td class="align-middle">${selectedHtml}</td>
-                `;
-                tbodySecciones.appendChild(tr);
-            });
+                foundSections.forEach((sec, idx) => {
+                    const tr = document.createElement('tr');
+                    const isFull = sec.matriculados >= sec.tope;
+                    
+                    let selectedHtml = isFull 
+                        ? `<span class="badge badge-warning" style="background-color: #ffc107; color: #212529; font-size: 13px; padding: 5px 10px;">Sección llena</span>`
+                        : `<input type="radio" name="radio-seccion" value="${sec.seccion}" ${selectedSections[currentSelectingIndex] === sec.seccion ? 'checked' : ''} style="transform: scale(1.5);">`;
 
-            const modalEl = document.getElementById('modalSecciones');
-            if (modalEl) {
-                console.log('Mostrando modal', modalEl);
-                modalEl.style.display = 'block';
-                modalEl.style.background = 'rgba(0,0,0,0.5)';
-                modalEl.removeAttribute('aria-hidden');
-                setTimeout(() => modalEl.classList.add('show'), 10);
-                document.getElementById('btn-aceptar-seccion').disabled = !selectedSections[currentSelectingIndex];
+                    tr.innerHTML = `
+                        <td class="align-middle text-left" style="white-space: pre-line; font-size: 12px;">${sec.horarios}</td>
+                          <td class="align-middle">
+                            <span class="label-primary" style="padding: 4px 8px; font-size: 13px;">${sec.seccion}</span>
+                          </td>
+                        <td class="align-middle">${sec.aula}</td>
+                        <td class="align-middle text-left" style="font-size: 12px;">${sec.docente}</td>
+                        <td class="align-middle">${sec.matriculados} / ${sec.tope}</td>
+                        <td class="align-middle" style="font-size: 12px;">LIMA</td>
+                        <td class="align-middle">${selectedHtml}</td>
+                    `;
+                    tbodySecciones.appendChild(tr);
+                });
+
+                const modalEl = document.getElementById('modalSecciones');
+                if (modalEl) {
+                    console.log('Mostrando modal', modalEl);
+                    modalEl.style.display = 'block';
+                    modalEl.style.background = 'rgba(0,0,0,0.5)';
+                    modalEl.removeAttribute('aria-hidden');
+                    setTimeout(() => modalEl.classList.add('show'), 10);
+                    document.getElementById('btn-aceptar-seccion').disabled = !selectedSections[currentSelectingIndex];
+                } else {
+                    console.error('No se encontró modalSecciones en el DOM');
+                }
+                } catch (err) {
+                    console.error('Error al abrir modal:', err);
+                    alert('Error al abrir modal: ' + err.message);
+                }
+            };
+
+            if (chaosConfig.enabled && chaosConfig.lag_secciones > 0) {
+                const originalHtml = btn.innerHTML;
+                btn.innerHTML = '<i class="fas fa-spinner fa-spin text-dark"></i>';
+                btn.disabled = true;
+                setTimeout(() => {
+                    btn.innerHTML = originalHtml;
+                    btn.disabled = false;
+                    openModalLogic();
+                }, chaosConfig.lag_secciones);
             } else {
-                console.error('No se encontró modalSecciones en el DOM');
-            }
-            } catch (err) {
-                console.error('Error al abrir modal:', err);
-                alert('Error al abrir modal: ' + err.message);
+                openModalLogic();
             }
         }
     });
@@ -230,78 +255,151 @@ document.addEventListener('DOMContentLoaded', () => {
             reverseButtons: false
         }).then((result) => {
             if (result.isConfirmed) {
-                let mp = document.getElementById('modalProgreso');
-                if(mp) {
-                    // Eliminamos temporalmente la transición de entrada para que el fondo oscuro asuma
-                    // inmediatamente y tape la salida del aviso, evitando el parpadeo blanco.
-                    mp.style.transition = 'none';
-                    mp.style.display = 'block';
-                    mp.style.background = 'rgba(0,0,0,0.5)';
-                    mp.classList.add('show');
-                    
-                    setTimeout(() => {
-                        mp.style.transition = ''; // Restauramos transición para su salida
-                    }, 100);
-                }
-                let bar = document.getElementById('progreso-bar');
-                let width = 0;
-                let interval = setInterval(() => {
-                    width += 10;
-                    bar.style.width = width + '%';
-                    if (width >= 100) {
-                        clearInterval(interval);
-                        setTimeout(() => {
-                            let mp = document.getElementById('modalProgreso');
-                            if(mp) {
-                                mp.classList.remove('show');
-                                setTimeout(() => mp.style.display = 'none', 150);
-                            }
-                            
-                            // Remove any backdrop
-                            document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
-                            document.body.classList.remove('modal-open');
+                const startProcess = () => {
+                    // === CHAOS PROBABILITIES LOGIC ===
+                    if (chaosConfig.enabled) {
+                        const roll = Math.random() * 100;
+                        
+                        // 1. Session Expiration
+                        if (chaosConfig.prob_sesion > 0 && Math.random() * 100 < chaosConfig.prob_sesion) {
+                            window.location.href = '../../auth/login.html?expired=true';
+                            return;
+                        }
 
+                        // 2. Server Error (503 / 405)
+                        if (chaosConfig.prob_503 > 0 && Math.random() * 100 < chaosConfig.prob_503) {
+                            const errors = ['503', '405_nginx', '405_tomcat'];
+                            const randomError = errors[Math.floor(Math.random() * errors.length)];
+                            window.location.href = `../errors/server_error.html?type=${randomError}`;
+                            return;
+                        }
+
+                        // 3. Falso Cruce de Horarios
+                        if (chaosConfig.prob_cruce > 0 && Math.random() * 100 < chaosConfig.prob_cruce) {
                             Swal.fire({
                                 backdrop: 'rgba(0,0,0,0.5)',
                                 heightAuto: false,
-                                title: '<h3 style="font-weight: bold; color: #333;">Aviso</h3>',
-                                html: '<p style="color: #666; font-size: 15px; font-weight: bold;">La Matrícula se registró exitosamente. Lo estamos redireccionando a su reporte de matrícula.</p>',
-                                iconHtml: '<i class="fa-solid fa-thumbs-up" style="color: #2ecc71; font-size: 60px;"></i>',
-                                customClass: { icon: 'border-0' },
-                                showConfirmButton: true,
-                                confirmButtonColor: '#f8f9fa',
-                                confirmButtonText: '<span style="font-weight: bold; color: #6c757d;">REDIRECCIONANDO...</span>',
-                                allowOutsideClick: false,
-                                didOpen: () => {
-                                    Swal.showLoading();
-                                    
-                                    // Guardar estado matriculado
-                                    localStorage.setItem('sum_matricula_realizada', 'true');
-
-                                    // Generar data para reporte de matricula
-                                    let repMatData = {
-                                        cursos: []
-                                    };
-                                    cursos.forEach((curso, idx) => {
-                                        if (selectedSections[idx]) {
-                                            repMatData.cursos.push({
-                                                ciclo: curso.ciclo,
-                                                asignatura: curso.asignatura,
-                                                creditos: curso.creditos,
-                                                seccion: selectedSections[idx]
-                                            });
-                                        }
-                                    });
-                                    localStorage.setItem('sum_rep_mat_data', JSON.stringify(repMatData));
-
-                                    setTimeout(() => {
-                                        window.location.href = '../reportes/rep_matricula.html';
-                                    }, 2000);
-                                }
+                                title: '<h3 style="font-weight: bold; color: #333;">Error de Matrícula</h3>',
+                                html: '<p style="color: #666; font-size: 15px;">Existe cruce de horarios entre las asignaturas seleccionadas. Por favor, modifique su selección.</p>',
+                                icon: 'error',
+                                confirmButtonColor: '#e74c3c',
+                                confirmButtonText: '<span style="font-weight: bold;">ACEPTAR</span>'
                             });
-                        }, 500);
+                            return;
+                        }
+
+                        // 4. Vacantes Agotadas
+                        if (chaosConfig.prob_vacantes > 0 && Math.random() * 100 < chaosConfig.prob_vacantes) {
+                            Swal.fire({
+                                backdrop: 'rgba(0,0,0,0.5)',
+                                heightAuto: false,
+                                title: '<h3 style="font-weight: bold; color: #333;">Aviso del Sistema</h3>',
+                                html: '<p style="color: #666; font-size: 15px;">No se pudo completar la matrícula. Una o más secciones seleccionadas se han quedado sin vacantes disponibles durante el proceso.</p>',
+                                icon: 'warning',
+                                confirmButtonColor: '#f39c12',
+                                confirmButtonText: '<span style="font-weight: bold;">ACEPTAR</span>'
+                            });
+                            return;
+                        }
                     }
-                }, 200);
+                    // === FIN CHAOS ===
+
+                    let mp = document.getElementById('modalProgreso');
+                    if(mp) {
+                        // Eliminamos temporalmente la transición de entrada para que el fondo oscuro asuma
+                        // inmediatamente y tape la salida del aviso, evitando el parpadeo blanco.
+                        mp.style.transition = 'none';
+                        mp.style.display = 'block';
+                        mp.style.background = 'rgba(0,0,0,0.5)';
+                        mp.classList.add('show');
+                        
+                        setTimeout(() => {
+                            mp.style.transition = ''; // Restauramos transición para su salida
+                        }, 100);
+                    }
+                    let bar = document.getElementById('progreso-bar');
+                    let width = 0;
+                    
+                    let intervalSpeed = 200;
+                    if (chaosConfig.enabled && chaosConfig.lag_barra) {
+                        intervalSpeed = chaosConfig.lag_barra;
+                    }
+
+                    let interval = setInterval(() => {
+                        width += 10;
+                        bar.style.width = width + '%';
+                        if (width >= 100) {
+                            clearInterval(interval);
+                            setTimeout(() => {
+                                let mp = document.getElementById('modalProgreso');
+                                if(mp) {
+                                    mp.classList.remove('show');
+                                    setTimeout(() => mp.style.display = 'none', 150);
+                                }
+                                
+                                // Remove any backdrop
+                                document.querySelectorAll('.modal-backdrop').forEach(el => el.remove());
+                                document.body.classList.remove('modal-open');
+
+                                Swal.fire({
+                                    backdrop: 'rgba(0,0,0,0.5)',
+                                    heightAuto: false,
+                                    title: '<h3 style="font-weight: bold; color: #333;">Aviso</h3>',
+                                    html: '<p style="color: #666; font-size: 15px; font-weight: bold;">La Matrícula se registró exitosamente. Lo estamos redireccionando a su reporte de matrícula.</p>',
+                                    iconHtml: '<i class="fa-solid fa-thumbs-up" style="color: #2ecc71; font-size: 60px;"></i>',
+                                    customClass: { icon: 'border-0' },
+                                    showConfirmButton: true,
+                                    confirmButtonColor: '#f8f9fa',
+                                    confirmButtonText: '<span style="font-weight: bold; color: #6c757d;">REDIRECCIONANDO...</span>',
+                                    allowOutsideClick: false,
+                                    didOpen: () => {
+                                        Swal.showLoading();
+                                        
+                                        // Guardar estado matriculado
+                                        localStorage.setItem('sum_matricula_realizada', 'true');
+
+                                        // Generar data para reporte de matricula
+                                        let repMatData = {
+                                            cursos: []
+                                        };
+                                        cursos.forEach((curso, idx) => {
+                                            if (selectedSections[idx]) {
+                                                repMatData.cursos.push({
+                                                    ciclo: curso.ciclo,
+                                                    asignatura: curso.asignatura,
+                                                    creditos: curso.creditos,
+                                                    seccion: selectedSections[idx]
+                                                });
+                                            }
+                                        });
+                                        localStorage.setItem('sum_rep_mat_data', JSON.stringify(repMatData));
+
+                                        setTimeout(() => {
+                                            window.location.href = '../reportes/rep_matricula.html';
+                                        }, 2000);
+                                    }
+                                });
+                            }, 500);
+                        }
+                    }, intervalSpeed);
+                };
+
+                if (chaosConfig.enabled && chaosConfig.lag_ejecutar > 0) {
+                    Swal.fire({
+                        title: 'Procesando...',
+                        html: 'Conectando con el servidor, por favor espere.',
+                        allowOutsideClick: false,
+                        didOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                    setTimeout(() => {
+                        Swal.close();
+                        startProcess();
+                    }, chaosConfig.lag_ejecutar);
+                } else {
+                    startProcess();
+                }
             }
         });
     });
