@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <style>
+        body { font-family: sans-serif; background-color: white; color: black; margin: 0; padding: 0; }
+        
+        /* Nginx Style */
+        .nginx-container { text-align: center; margin-top: 20vh; }
+        .nginx-container h1 { font-size: 36px; font-weight: normal; margin-bottom: 10px; }
+        .nginx-container hr { width: 100%; border: 0; border-bottom: 1px solid #ccc; margin: 20px 0; }
+        .nginx-container p { font-size: 14px; }
+        
+        /* Tomcat Style */
+        .tomcat-container { padding: 20px; font-family: Tahoma, Arial, sans-serif; }
+        .tomcat-container h1 { font-size: 22px; font-weight: bold; color: #fff; background-color: #525D76; padding: 5px 15px; margin: 0; border-radius: 3px; }
+        .tomcat-container p { font-size: 14px; margin: 15px 0; }
+        .tomcat-container hr { border: 0; border-top: 1px solid #ccc; margin: 20px 0; }
+        .tomcat-container .tomcat-details { font-family: monospace; font-size: 12px; }
+        .tomcat-container b { font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div id="content"></div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const type = urlParams.get('type') || '503';
+        const content = document.getElementById('content');
+
+        if (type === '503') {
+            document.title = "503 Service Temporarily Unavailable";
+            content.innerHTML = `
+                <div class="nginx-container">
+                    <h1>503 Service Temporarily Unavailable</h1>
+                    <hr>
+                    <p>nginx/1.18.0 (Ubuntu)</p>
+                </div>
+            `;
+        } else if (type === '405_nginx') {
+            document.title = "405 Not Allowed";
+            content.innerHTML = `
+                <div class="nginx-container">
+                    <h1>405 Not Allowed</h1>
+                    <hr>
+                    <p>nginx</p>
+                </div>
+            `;
+        } else if (type === '405_tomcat') {
+            document.title = "HTTP Status 405 – Method Not Allowed";
+            content.innerHTML = `
+                <div class="tomcat-container">
+                    <h1>HTTP Status 405 – Method Not Allowed</h1>
+                    <hr>
+                    <p><b>Type</b> Status Report</p>
+                    <p><b>Message</b> HTTP method POST is not supported by this URL</p>
+                    <p><b>Description</b> The method received in the request-line is known by the origin server but not supported by the target resource.</p>
+                    <hr>
+                    <p class="tomcat-details">Apache Tomcat/9.0.41</p>
+                </div>
+            `;
+        } else {
+            document.title = "500 Internal Server Error";
+            content.innerHTML = `
+                <div class="nginx-container">
+                    <h1>500 Internal Server Error</h1>
+                    <hr>
+                    <p>nginx</p>
+                </div>
+            `;
+        }
+    </script>
+</body>
+</html>
