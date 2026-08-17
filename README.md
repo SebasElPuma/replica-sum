@@ -61,6 +61,10 @@ replica_sum/
 3. Simplemente abre el archivo `modules/dashboard/index.html` (o haz un redirect desde un `index.html` en la raíz) en tu navegador web de preferencia.
 4. Explora las secciones de información, sube tu propia foto o modifica tu perfil para probar la persistencia local.
 
+## Documentación Técnica
+
+¿Quieres entender cómo está armado el proyecto por dentro (arquitectura, relación entre archivos, flujo de datos simulados)? Revisa la [documentación técnica completa](./docs/DOCUMENTACION_TECNICA.md).
+
 ## Licencia
 
 Este proyecto se distribuye bajo la licencia **MIT**. Eres libre de utilizarlo, modificarlo y distribuirlo para fines de aprendizaje. Consulta el archivo `LICENSE` en la raíz del proyecto para más detalles formales.
