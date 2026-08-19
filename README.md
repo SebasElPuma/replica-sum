@@ -6,6 +6,12 @@ Este proyecto es una réplica del frontend del Sistema Único de Matrícula (SUM
 
 **Este proyecto es una iniciativa personal y no oficial.** No está afiliado, respaldado, asociado, mantenido ni patrocinado de ninguna manera por la Universidad Nacional Mayor de San Marcos (UNMSM). Se trata únicamente de una prueba de concepto creada de forma independiente con fines puramente académicos y de aprendizaje sobre diseño web.
 
+## Vista Previa
+
+![Dashboard de la réplica SUM](./docs/image.png)
+
+🔗 **[Ver demo en vivo](https://sebaselpuma.github.io/replica-sum/)**
+
 ## Características Principales
 
 *   **100% Frontend Estático**: No requiere un servidor backend para funcionar. Construido con Vanilla HTML, CSS y JavaScript.
