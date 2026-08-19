@@ -14,13 +14,14 @@ Este proyecto es una réplica del frontend del Sistema Único de Matrícula (SUM
     *   Edición completa del perfil
     *   Fallback dinámico de imagen (avatar de perrito por defecto) si el usuario borra su foto.
 *   **Diseño Modular y Homologado**: Estilos consistentes en botones, tablas y tarjetas de información a través de los múltiples módulos.
-*   **Simulador de Matrícula
+*   **Simulador de Matrícula**
     *   Permite subir Reporte de Pre-Matrícula y matricularse
-    *   
-*   **Botón Modificar
+*   **Botón Modificar**
     *   La mayoría de las secciones cuenta con un botón para modificar casi cualquier dato
-*   **Debug
+*   **Debug**
     *   Apartado que permite acceder al `LocalStorage` del navegador para modificar, en formato JS, los datos correspondientes
+*   **Modo Oscuro**
+    * Icono de sol y luna para cambiar de modo.
 
 ## Estructura del Proyecto
 
@@ -34,6 +35,7 @@ replica_sum/
 │   ├── images/      # Iconos, logos y demás recursos gráficos
 │   └── data/        # Archivos que actúan como base de datos de respaldo (foto_default.js, etc.)
 ├── auth/            # Módulo de inicio de sesión (simulado estáticamente)
+├── docs/            # Documentación técnica del proyecto
 ├── modules/         # Contiene las diferentes vistas principales del sistema
 │   ├── dashboard/       # Vista principal de aterrizaje (Inicio)
 │   ├── mi_informacion/  # Gestión del perfil, ficha socioeconómica e información
