@@ -1,6 +1,6 @@
 # Réplica SUM - Dashboard Frontend
 
-Este proyecto es una réplica del frontend del Sistema Único de Matrícula (SUM) adaptado para funcionar de manera estática (sin backend). Fue creado principalmente con fines educativos, de demostración y para personalizar la interfaz de usuario.
+Este proyecto es una réplica del frontend del Sistema Único de Matrícula (SUM) adaptado para funcionar de manera estática (sin backend). Fue creado principalmente con fines educativos, de demostración y para personalizar la interfaz de usuario. Elaborado con Gemini 3.1 Pro en Antigravity IDE.
 
 ## ⚠️ Aclaración Importante (Disclaimer)
 
